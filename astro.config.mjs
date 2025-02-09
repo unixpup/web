@@ -5,12 +5,14 @@ import partytown from "@astrojs/partytown";
 
 import react from "@astrojs/react";
 
+import expressiveCode from "astro-expressive-code";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://unixpup.github.io",
   trailingSlash: "always",
   output: "static",
-  integrations: [partytown(), react()],
+  integrations: [partytown(), react(), expressiveCode()],
   prefetch: {
     prefetchAll: true,
     defaultStrategy: "load",
@@ -29,4 +31,3 @@ export default defineConfig({
     contentIntellisense: true,
   },
 });
-
