@@ -24,11 +24,11 @@ importers:
         specifier: ^19.0.3
         version: 19.0.3(@types/react@19.0.8)
       astro:
-        specifier: ^5.2.6
-        version: 5.2.6(rollup@4.34.6)(typescript@5.7.3)
+        specifier: ^5.3.0
+        version: 5.3.0(rollup@4.34.6)(typescript@5.7.3)
       astro-expressive-code:
         specifier: ^0.40.2
-        version: 0.40.2(astro@5.2.6(rollup@4.34.6)(typescript@5.7.3))
+        version: 0.40.2(astro@5.3.0(rollup@4.34.6)(typescript@5.7.3))
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -794,8 +794,8 @@ packages:
     peerDependencies:
       astro: ^4.0.0-beta || ^5.0.0-beta || ^3.3.0
 
-  astro@5.2.6:
-    resolution: {integrity: sha512-CrTuJMwpWF9kmOhX+cl6uPqNbTRrHO7eXggFP9SK7+Bsen/7FpJtA6k1p/ALleuV5ndJLqn/9tpmP3qACHPjYA==}
+  astro@5.3.0:
+    resolution: {integrity: sha512-e88l/Yk/6enR/ZDddLbqtM+oblBFk5mneNSmNesyVYGL/6Dj4UA67GPAZOk79VxT5dbLlclZSyyw/wlxN1aj3A==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -2873,12 +2873,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  astro-expressive-code@0.40.2(astro@5.2.6(rollup@4.34.6)(typescript@5.7.3)):
+  astro-expressive-code@0.40.2(astro@5.3.0(rollup@4.34.6)(typescript@5.7.3)):
     dependencies:
-      astro: 5.2.6(rollup@4.34.6)(typescript@5.7.3)
+      astro: 5.3.0(rollup@4.34.6)(typescript@5.7.3)
       rehype-expressive-code: 0.40.2
 
-  astro@5.2.6(rollup@4.34.6)(typescript@5.7.3):
+  astro@5.3.0(rollup@4.34.6)(typescript@5.7.3):
     dependencies:
       '@astrojs/compiler': 2.10.4
       '@astrojs/internal-helpers': 0.5.1
