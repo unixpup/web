@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-       - name: Clean up worktree
-         run: |
+      - name: Clean up worktree
+        run: |
             if [ -d "/home/runner/work/web/web" ]; then
               git worktree remove /home/runner/work/web/web --force
             fi
