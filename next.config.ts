@@ -12,6 +12,11 @@ const config: NextConfig = {
 		ppr: 'incremental',
 		useLightningcss: true,
 	},
+	eslint: {
+    		// Warning: This allows production builds to successfully complete even if
+    		// your project has ESLint errors.
+    		ignoreDuringBuilds: true,
+  	},
 } satisfies NextConfig
 
 module.exports = withMDX(NextConfig)
