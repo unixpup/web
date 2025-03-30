@@ -12,7 +12,7 @@ const config: NextConfig = {
 		ppr: 'incremental',
 		useLightningcss: true,
 	},
-} satisfies NextConfig
+};
 
 module.exports = withMDX(NextConfig)
 export default config;
