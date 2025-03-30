@@ -2,7 +2,7 @@
 import { defineConfig } from "astro/config";
 
 import partytown from "@astrojs/partytown";
-import tailwind from "@astrojs/tailwind";
+import tailwind from "@tailwindcss/vite";
 import compress from "astro-compress";
 import sitemap from "@astrojs/sitemap";
 
