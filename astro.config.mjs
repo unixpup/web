@@ -12,39 +12,10 @@ import expressiveCode from "astro-expressive-code";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://fault.wtf",
+  site: "https://fault.wtf/",
   trailingSlash: "always",
   output: "static",
-  integrations: [
-    partytown(),
-    react(),
-    expressiveCode(),
-    compress({
-      CSS: true,
-      SVG: true,
-      Image: true,
-      HTML: {
-        "html-minifier-terser": {
-          collapseWhitespace: true,
-          // collapseInlineTagWhitespace: true, // It breaks display-inline / flex-inline text
-          minifyCSS: true,
-          minifyJS: true,
-          removeComments: true,
-          removeEmptyAttributes: true,
-          // removeEmptyElements: true, // It removes sometimes SVGs
-          removeRedundantAttributes: true,
-        },
-      },
-      JavaScript: {
-        terser: {
-          compress: {
-            drop_console: true,
-            drop_debugger: true,
-          },
-        },
-      },
-    }),
-  ],
+  integrations: [partytown(), react(), expressiveCode(), tailwind()],
   prefetch: {
     prefetchAll: true,
     defaultStrategy: "load",
