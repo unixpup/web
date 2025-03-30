@@ -14,5 +14,4 @@ const config: NextConfig = {
 	},
 };
 
-module.exports = withMDX(NextConfig)
 export default config;
