@@ -40,7 +40,6 @@ jobs:
         run: |
           pnpm i
           pnpm run build
-          pnpm run export
           touch out/.nojekyll
 
       - name: Deploy
