@@ -10,7 +10,6 @@ const config: NextConfig = {
 		dynamicIO: true,
 		mdxRs: true,
 		ppr: 'incremental',
-		useLightningcss: true,
 	},
 };
 
