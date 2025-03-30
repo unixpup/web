@@ -14,8 +14,8 @@ interface BlurTextProps {
   direction?: "top" | "bottom";
   threshold?: number;
   rootMargin?: string;
-  animationFrom?: Record<string>;
-  animationTo?: Record<string>[];
+  animationFrom?: Record<string, string>;
+  animationTo?: Record<string, string>[];
   easing?: (t: number) => number | string;
   onAnimationComplete?: () => void;
 }
@@ -88,7 +88,7 @@ const BlurText: React.FC<BlurTextProps> = ({
       from: animationFrom || defaultFrom,
       to: inView
         ? async (
-            next: (arg: Record<string, SpringValue<int>>) => Promise<void>,
+            next: (arg: Record<string, SpringValue<string, string | number>>) => Promise<void>,
           ) => {
             for (const step of animationTo || defaultTo) {
               await next(step);
