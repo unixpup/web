@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import { StaticComponent, DynamicComponent, Fallback } from "@/app/ui"
+// import { StaticComponent, DynamicComponent, Fallback } from "@/app/ui"
 
 export const experimental_ppr = true
 
