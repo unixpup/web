@@ -1,4 +1,4 @@
-import { Suspense } from "react"
+// import { Suspense } from "react"
 import BlurText from "../BlurText/BlurText.tsx"
 // import { StaticComponent, DynamicComponent, Fallback } from "@/app/ui"
 

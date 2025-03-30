@@ -14,8 +14,8 @@ interface BlurTextProps {
   direction?: "top" | "bottom";
   threshold?: number;
   rootMargin?: string;
-  animationFrom?: Record<string, any>;
-  animationTo?: Record<string, any>[];
+  animationFrom?: Record<string>;
+  animationTo?: Record<string>[];
   easing?: (t: number) => number | string;
   onAnimationComplete?: () => void;
 }
@@ -39,7 +39,7 @@ const BlurText: React.FC<BlurTextProps> = ({
   const animatedCount = useRef(0);
 
   // Default animations based on direction
-  const defaultFrom: Record<string, any> =
+  const defaultFrom: Record<string> =
     direction === "top"
       ? {
           filter: "blur(10px)",
@@ -52,7 +52,7 @@ const BlurText: React.FC<BlurTextProps> = ({
           transform: "translate3d(0,50px,0)",
         };
 
-  const defaultTo: Record<string, any>[] = [
+  const defaultTo: Record<string>[] = [
     {
       filter: "blur(5px)",
       opacity: 0.5,
@@ -88,7 +88,7 @@ const BlurText: React.FC<BlurTextProps> = ({
       from: animationFrom || defaultFrom,
       to: inView
         ? async (
-            next: (arg: Record<string, SpringValue<any>>) => Promise<void>,
+            next: (arg: Record<string, SpringValue<int>>) => Promise<void>,
           ) => {
             for (const step of animationTo || defaultTo) {
               await next(step);
@@ -103,7 +103,7 @@ const BlurText: React.FC<BlurTextProps> = ({
           }
         : animationFrom || defaultFrom,
       delay: i * delay,
-      config: { easing: easing as any },
+      config: { easing: easing as int },
     })),
   );
 
