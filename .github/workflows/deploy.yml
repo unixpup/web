@@ -10,6 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+       - name: Clean up worktree
+        run: |
+          if [ -d "/home/runner/work/web/web" ]; then
+            git worktree remove /home/runner/work/web/web --force
+          fi
+
       - uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -48,3 +54,4 @@ jobs:
         with:
           branch: main
           folder: out
+          token: ${{ secrets.GITHUB_TOKEN }}
