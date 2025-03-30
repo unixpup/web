@@ -12,7 +12,7 @@ import expressiveCode from "astro-expressive-code";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://unixpup.github.io",
+  site: "https://fault.wtf",
   trailingSlash: "always",
   output: "static",
   integrations: [
@@ -21,8 +21,8 @@ export default defineConfig({
     expressiveCode(),
     compress({
       CSS: true,
-      SVG: false,
-      Image: false,
+      SVG: true,
+      Image: true,
       HTML: {
         "html-minifier-terser": {
           collapseWhitespace: true,
@@ -63,4 +63,3 @@ export default defineConfig({
     contentIntellisense: true,
   },
 });
-
