@@ -2,6 +2,9 @@
 import { defineConfig } from "astro/config";
 
 import partytown from "@astrojs/partytown";
+import tailwind from "@astrojs/tailwind";
+import compress from "astro-compress";
+import sitemap from "@astrojs/sitemap";
 
 import react from "@astrojs/react";
 
@@ -12,7 +15,36 @@ export default defineConfig({
   site: "https://unixpup.github.io",
   trailingSlash: "always",
   output: "static",
-  integrations: [partytown(), react(), expressiveCode()],
+  integrations: [
+    partytown(),
+    react(),
+    expressiveCode(),
+    compress({
+      CSS: true,
+      SVG: false,
+      Image: false,
+      HTML: {
+        "html-minifier-terser": {
+          collapseWhitespace: true,
+          // collapseInlineTagWhitespace: true, // It breaks display-inline / flex-inline text
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: true,
+          removeEmptyAttributes: true,
+          // removeEmptyElements: true, // It removes sometimes SVGs
+          removeRedundantAttributes: true,
+        },
+      },
+      JavaScript: {
+        terser: {
+          compress: {
+            drop_console: true,
+            drop_debugger: true,
+          },
+        },
+      },
+    }),
+  ],
   prefetch: {
     prefetchAll: true,
     defaultStrategy: "load",
@@ -31,3 +63,4 @@ export default defineConfig({
     contentIntellisense: true,
   },
 });
+
