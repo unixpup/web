@@ -1,18 +1,13 @@
 ---
-import { useI18n } from "astro-i18n";
-import LanguageSwitcher from "./LanguageSwitcher.astro";
 
 // Definition for active link utility
 const { pathname } = Astro.url;
 const isActive = (path: string) => pathname === path || pathname.startsWith(path);
-
-// Get translations
-const { t } = useI18n();
 ---
 
 <header class="fixed w-full top-0 z-40 backdrop-blur-md border-b border-white/5 transition-colors duration-300">
   <div class="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
-    <a href="/" class="text-xl font-medium perspective-text">
+    <a class="text-xl font-medium perspective-text">
       <span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">/</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">~</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">/</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">v</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">e</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">r</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">m</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">i</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">l</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">l</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">i</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">o</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">n</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">p</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">a</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">w</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">s</span>
     </a>
 
@@ -20,28 +15,28 @@ const { t } = useI18n();
       <nav>
         <ul class="flex items-center space-x-8">
           <li>
-            <a href="/" class={`nav-link text-sm font-medium transition-colors ${isActive('/') && !isActive('/about') && !isActive('/projects') && !isActive('/contact') && !isActive('/devblog') ? 'active' : ''}`}>
-              {t('nav.home')}
+            <a class={`nav-link text-sm font-medium transition-colors ${isActive('/') && !isActive('/about') && !isActive('/projects') && !isActive('/contact') && !isActive('/devblog') ? 'active' : ''}`}>
+              {('nav.home')}
             </a>
           </li>
           <li>
-            <a href="/about/" class={`nav-link text-sm font-medium transition-colors ${isActive('/about') ? 'active' : ''}`}>
-              {t('nav.about')}
+            <a class={`nav-link text-sm font-medium transition-colors ${isActive('/about') ? 'active' : ''}`}>
+              {('nav.about')}
             </a>
           </li>
           <li>
-            <a href="/projects/" class={`nav-link text-sm font-medium transition-colors ${isActive('/projects') ? 'active' : ''}`}>
-              {t('nav.projects')}
+            <a class={`nav-link text-sm font-medium transition-colors ${isActive('/projects') ? 'active' : ''}`}>
+              {('nav.projects')}
             </a>
           </li>
           <li>
-            <a href="/devblog/" class={`nav-link text-sm font-medium transition-colors ${isActive('/devblog') ? 'active' : ''}`}>
-              {t('nav.devblog')}
+            <a class={`nav-link text-sm font-medium transition-colors ${isActive('/devblog') ? 'active' : ''}`}>
+              {('nav.devblog')}
             </a>
           </li>
           <li>
-            <a href="/contact/" class={`nav-link text-sm font-medium transition-colors ${isActive('/contact') ? 'active' : ''}`}>
-              {t('nav.contact')}
+            <a class={`nav-link text-sm font-medium transition-colors ${isActive('/contact') ? 'active' : ''}`}>
+              {('nav.contact')}
             </a>
           </li>
         </ul>
@@ -51,7 +46,6 @@ const { t } = useI18n();
         <div class="theme-control">
           <slot />
         </div>
-        <LanguageSwitcher />
       </div>
     </div>
 
@@ -60,7 +54,6 @@ const { t } = useI18n();
         <div class="theme-control-mobile">
           <slot />
         </div>
-        <LanguageSwitcher />
       </div>
       <button id="menuButton" class="flex flex-col space-y-1.5 p-2" aria-label="Menu">
         <span class="w-6 h-0.5 bg-current block transition-transform duration-300"></span>
@@ -82,28 +75,28 @@ const { t } = useI18n();
     <nav>
       <ul class="flex flex-col space-y-8 items-center text-center">
         <li>
-          <a href="/" class="text-2xl font-medium transition-colors">
-            {t('nav.home')}
+          <a class="text-2xl font-medium transition-colors">
+            {('nav.home')}
           </a>
         </li>
         <li>
-          <a href="/about/" class="text-2xl font-medium transition-colors">
-            {t('nav.about')}
+          <a class="text-2xl font-medium transition-colors">
+            {('nav.about')}
           </a>
         </li>
         <li>
-          <a href="/projects/" class="text-2xl font-medium transition-colors">
-            {t('nav.projects')}
+          <a class="text-2xl font-medium transition-colors">
+            {('nav.projects')}
           </a>
         </li>
         <li>
-          <a href="/devblog/" class="text-2xl font-medium transition-colors">
-            {t('nav.devblog')}
+          <a class="text-2xl font-medium transition-colors">
+            {('nav.devblog')}
           </a>
         </li>
         <li>
-          <a href="/contact/" class="text-2xl font-medium transition-colors">
-            {t('nav.contact')}
+          <a class="text-2xl font-medium transition-colors">
+            {('nav.contact')}
           </a>
         </li>
       </ul>

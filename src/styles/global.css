@@ -1,8 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 /* Tokyo Night color scheme with theme variable support */
@@ -62,7 +57,7 @@ body {
   overflow-x: hidden;
   line-height: 1.5;
   letter-spacing: -0.02em;
-  @apply text-tokyo-fg;
+  color: var(--theme-fg);
 
   /* Use theme variables */
   background-color: var(--theme-bg);
@@ -281,134 +276,189 @@ code, pre, kbd, samp, tt {
 }
 
 /* Code styles that adapt to theme */
-@layer base {
-  code {
-    background: var(--theme-bg-highlight);
-    color: var(--theme-green);
-    padding: 0.1em 0.3em;
-    border-radius: 0.25em;
-    font-size: 1.05em;
-    font-family: var(--font-mono);
-  }
+code {
+  background: var(--theme-bg-highlight);
+  color: var(--theme-green);
+  padding: 0.1em 0.3em;
+  border-radius: 0.25em;
+  font-size: 1.05em;
+  font-family: var(--font-mono);
+}
 
-  /* Code blocks */
-  pre {
-    font-family: var(--font-mono);
-    line-height: 1.6;
-    padding: 1.25rem;
-    border-radius: 0.5rem;
-    overflow-x: auto;
-    background: var(--theme-bg-highlight);
-  }
+/* Code blocks */
+pre {
+  font-family: var(--font-mono);
+  line-height: 1.6;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  background: var(--theme-bg-highlight);
+}
 
-  pre code {
-    background: transparent;
-    padding: 0;
-    font-size: 1.05em;
-    color: inherit;
-  }
+pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 1.05em;
+  color: inherit;
+}
 
-  /* Improved tag contrast for the light theme */
-  .theme-light .px-2.py-1.bg-white\/5 {
-    background-color: rgba(0, 0, 0, 0.1);
-    color: var(--theme-fg);
-  }
+/* Text colors */
+.text-white {
+  color: #ffffff;
+}
 
-  /* Improve backgrounds with white opacity in light theme */
-  .theme-light .bg-white\/\[0\.03\] {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
+.text-neutral-300 {
+  color: #d4d4d4;
+}
 
-  .theme-light .bg-white\/5 {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
+.text-neutral-400 {
+  color: #a3a3a3;
+}
 
-  .theme-light .border-white\/5 {
-    border-color: rgba(0, 0, 0, 0.1);
-  }
+.text-neutral-500 {
+  color: #737373;
+}
 
-  .theme-light .border-white\/10 {
-    border-color: rgba(0, 0, 0, 0.15);
-  }
+/* Background colors */
+.bg-neutral-800 {
+  background-color: #262626;
+}
 
-  /* Fix background opacity issues in skill cards */
-  .theme-light .card.bg-white\/\[0\.03\] {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
+.bg-neutral-900 {
+  background-color: #171717;
+}
 
-  /* Improve top navigation bar in light theme */
-  .theme-light .border-neutral-800 {
-    border-color: #c8cad6;
-  }
+.bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.05);
+}
 
-  /* Physics-based background fixes for light theme */
-  .theme-light canvas#physics-background {
-    opacity: 0.3;
-    filter: invert(1) hue-rotate(180deg);
-  }
+.bg-white\/\[0\.03\] {
+  background-color: rgba(255, 255, 255, 0.03);
+}
 
-  /* Fix color text in light theme */
-  .theme-light .text-white {
-    color: var(--theme-fg);
-  }
+/* Border colors */
+.border-white\/5 {
+  border-color: rgba(255, 255, 255, 0.05);
+}
 
-  .theme-light .text-neutral-300 {
-    color: var(--theme-fg-dark);
-  }
+.border-white\/10 {
+  border-color: rgba(255, 255, 255, 0.1);
+}
 
-  .theme-light .text-neutral-400 {
-    color: #555;
-  }
+.border-neutral-800 {
+  border-color: #262626;
+}
 
-  .theme-light .text-neutral-500 {
-    color: #666;
-  }
+.border-l {
+  border-left-width: 1px;
+  border-left-style: solid;
+}
 
-  /* Fix backgrounds for progress bars in light mode */
-  .theme-light .bg-neutral-800 {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
+/* Tokyo text color */
+.text-tokyo-fg {
+  color: var(--theme-fg);
+}
 
-  /* Fix timeline circles and borders in light mode */
-  .theme-light .border-l.border-neutral-800 {
-    border-color: rgba(0, 0, 0, 0.15);
-  }
+/* Improved tag contrast for the light theme */
+.theme-light .px-2.py-1.bg-white\/5 {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: var(--theme-fg);
+}
 
-  .theme-light .bg-neutral-900 {
-    background-color: #f5f5f7;
-  }
+/* Improve backgrounds with white opacity in light theme */
+.theme-light .bg-white\/\[0\.03\] {
+  background-color: rgba(0, 0, 0, 0.05);
+}
 
-  ::selection {
-    background-color: var(--theme-purple);
-    color: var(--theme-bg);
-  }
+.theme-light .bg-white\/5 {
+  background-color: rgba(0, 0, 0, 0.05);
+}
 
-  /* Theme classes with CSS variable support */
-  .theme-dark {
-    --cursor-bg: #ffffff;
-  }
+.theme-light .border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.1);
+}
 
-  .theme-light {
-    --cursor-bg: #000000;
-  }
+.theme-light .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.15);
+}
 
-  /* Project page specific light theme improvements */
-  .theme-light .filter-btn {
-    color: var(--theme-fg);
-  }
+/* Fix background opacity issues in skill cards */
+.theme-light .card.bg-white\/\[0\.03\] {
+  background-color: rgba(255, 255, 255, 0.8);
+}
 
-  .theme-light .filter-btn.active {
-    color: var(--theme-blue);
-  }
+/* Improve top navigation bar in light theme */
+.theme-light .border-neutral-800 {
+  border-color: #c8cad6;
+}
 
-  /* Improve text color contrast in light mode */
-  .theme-light .text-neutral-400 {
-    color: #555;
-  }
+/* Physics-based background fixes for light theme */
+.theme-light canvas#physics-background {
+  opacity: 0.3;
+  filter: invert(1) hue-rotate(180deg);
+}
 
-  .theme-light .text-neutral-500 {
-    color: #666;
-  }
+/* Fix color text in light theme */
+.theme-light .text-white {
+  color: var(--theme-fg);
+}
+
+.theme-light .text-neutral-300 {
+  color: var(--theme-fg-dark);
+}
+
+.theme-light .text-neutral-400 {
+  color: #555;
+}
+
+.theme-light .text-neutral-500 {
+  color: #666;
+}
+
+/* Fix backgrounds for progress bars in light mode */
+.theme-light .bg-neutral-800 {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Fix timeline circles and borders in light mode */
+.theme-light .border-l.border-neutral-800 {
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.theme-light .bg-neutral-900 {
+  background-color: #f5f5f7;
+}
+
+::selection {
+  background-color: var(--theme-purple);
+  color: var(--theme-bg);
+}
+
+/* Theme classes with CSS variable support */
+.theme-dark {
+  --cursor-bg: #ffffff;
+}
+
+.theme-light {
+  --cursor-bg: #000000;
+}
+
+/* Project page specific light theme improvements */
+.theme-light .filter-btn {
+  color: var(--theme-fg);
+}
+
+.theme-light .filter-btn.active {
+  color: var(--theme-blue);
+}
+
+/* Improve text color contrast in light mode */
+.theme-light .text-neutral-400 {
+  color: #555;
+}
+
+.theme-light .text-neutral-500 {
+  color: #666;
 }
 
 /* Welcome text animation styles */
@@ -519,4 +569,127 @@ code, pre, kbd, samp, tt {
 :lang(zh) .text-numeric,
 :lang(ko) .text-numeric {
   font-variant-numeric: lining-nums proportional-nums;
+}
+
+/* Additional utility classes that were previously provided by TailwindCSS */
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.m-1 {
+  margin: 0.25rem;
+}
+
+.m-2 {
+  margin: 0.5rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
 }

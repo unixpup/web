@@ -1,6 +1,5 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
-import { useI18n } from 'astro-i18n';
 import '../styles/global.css';
 import Navigation from '../components/Navigation.astro';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
@@ -11,33 +10,20 @@ export interface Props {
 	description?: string;
 }
 
-const { t, locale, locales } = useI18n();
+// Destructure props to access title and description
+const { title = "Default Title", description = "" } = Astro.props;
 
-// Use translated title if no custom title provided
-const {
-  title = t('site.title'),
-  description = t('site.description')
-} = Astro.props;
-
-// Get all routes for prefetching
+// Get all routes for prefetching - now with proper i18n support
 const pages = await Astro.glob('../pages/**/*.astro');
-const routes = pages.map(page => {
+const baseRoutes = pages.map(page => {
   const path = page.url?.replace(/^\/|\/$/g, '');
   return path ? `/${path}/` : '/';
 }).filter(Boolean);
 
-// Determine the appropriate font features based on language
-const languageFontFeatures = new Map([
-  ['ja', 'font-japanese'],
-  ['zh', 'font-chinese'],
-  ['ko', 'font-korean'],
-]);
-
-const languageClass = languageFontFeatures.get(locale) || '';
 ---
 
 <!doctype html>
-<html lang={locale} class={`bg-tokyo-bg ${languageClass}`}>
+<html class={`bg-tokyo-bg`}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
@@ -49,35 +35,6 @@ const languageClass = languageFontFeatures.get(locale) || '';
 
 		<!-- Base Latin font -->
 		<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
-
-		<!-- Font for Japanese -->
-		{locale === 'ja' && (
-			<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-		)}
-
-		<!-- Font for Chinese -->
-		{locale === 'zh' && (
-			<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-		)}
-
-		<!-- Font for Korean -->
-		{locale === 'ko' && (
-			<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-		)}
-
-		<!-- Language alternates for SEO -->
-		{locales.map(lang => (
-			<link
-				rel="alternate"
-				hreflang={lang.locale}
-				href={`https://fault.wtf/${lang.locale === 'en' ? '' : lang.locale + '/'}${Astro.url.pathname.replace(/^\/(en|es|ja|de|fr|zh|pt|ko)?\/?/, '/')}`}
-			/>
-		))}
-
-		<!-- Prefetch routes -->
-		{routes.map(route => (
-			<link rel="prefetch" href={route} />
-		))}
 	</head>
 	<body class="min-h-screen bg-neutral-950 text-neutral-200">
 		<div id="webgl-container" class="fixed inset-0 z-0 pointer-events-none"></div>

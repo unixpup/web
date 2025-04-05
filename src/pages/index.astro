@@ -4,10 +4,8 @@ import Footer from '@components/Footer.astro';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from "@vercel/speed-insights/astro";
 
-// Define page metadata with types
-const pageTitle: string = "vermillionpaws | developer";
-
 // Define welcome messages in different languages with emojis
+// These will be used for the rotating welcome message animation
 const welcomeMessages = [
   { text: "Welcome!", lang: "English", emoji: "🇬🇧" },
   { text: "¡Bienvenido!", lang: "Spanish", emoji: "🇪🇸" },
@@ -20,7 +18,7 @@ const welcomeMessages = [
 ];
 ---
 
-<Layout title={pageTitle}>
+<Layout title="Home | vermillionpaws" description="Welcome to my personal website! Explore my projects, skills, and more.">
   <main class="min-h-screen flex flex-col">
     <!-- Hero Section -->
     <section class="flex flex-col items-center justify-center pt-32 pb-24 px-4">
@@ -35,14 +33,14 @@ const welcomeMessages = [
           </div>
         </h1>
         <p class="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto mb-10">
-          Hey! Welcome to my little corner of the internet. I'm a developer who loves creating cool stuff with code.
+          {('home.intro')}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/about/" class="btn bg-white/5 hover:bg-white/10 border border-white/10 rounded-md px-6 py-3 text-sm font-medium transition-all">
-            More about me
+          <a class="btn bg-white/5 hover:bg-white/10 border border-white/10 rounded-md px-6 py-3 text-sm font-medium transition-all">
+            {('home.aboutButton')}
           </a>
-          <a href="/projects/" class="btn bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 rounded-md px-6 py-3 text-sm font-medium transition-all text-white">
-            View projects
+          <a class="btn bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 rounded-md px-6 py-3 text-sm font-medium transition-all text-white">
+            {('home.projectsButton')}
           </a>
         </div>
       </div>
@@ -52,7 +50,7 @@ const welcomeMessages = [
     <section class="py-20 px-4 bg-neutral-900/30">
       <div class="container max-w-4xl mx-auto">
         <h2 class="text-xl md:text-2xl font-semibold mb-12 text-center">
-          <span class="text-neutral-500">// </span>Technical skills
+          <span class="text-neutral-500">// </span>{('home.skillsTitle')}
         </h2>
 
         <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
@@ -62,8 +60,8 @@ const welcomeMessages = [
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
               </div>
             </div>
-            <h3 class="text-lg font-medium text-white mb-2">Web Development</h3>
-            <p class="text-sm text-neutral-400">Astro, React, TailwindCSS, TypeScript</p>
+            <h3 class="text-lg font-medium text-white mb-2">{('home.skills.webDev.title')}</h3>
+            <p class="text-sm text-neutral-400">{('home.skills.webDev.desc')}</p>
           </div>
 
           <div class="card p-6 bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-lg transition-all hover:bg-white/[0.05]">
@@ -72,8 +70,8 @@ const welcomeMessages = [
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3m18-3v3a2 2 0 0 0-2 2h3M3 16v3a2 2 0 0 0 2 2h3m8-2h3a2 2 0 0 0 2-2v-3"></path></svg>
               </div>
             </div>
-            <h3 class="text-lg font-medium text-white mb-2">Neovim</h3>
-            <p class="text-sm text-neutral-400">I'm obsessed with customizing my editor</p>
+            <h3 class="text-lg font-medium text-white mb-2">{('home.skills.neovim.title')}</h3>
+            <p class="text-sm text-neutral-400">{('home.skills.neovim.desc')}</p>
           </div>
 
           <div class="card p-6 bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-lg transition-all hover:bg-white/[0.05]">
@@ -82,8 +80,8 @@ const welcomeMessages = [
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"></path><path d="M8 6l-6 6 6 6"></path></svg>
               </div>
             </div>
-            <h3 class="text-lg font-medium text-white mb-2">Lua Scripting</h3>
-            <p class="text-sm text-neutral-400">Mostly for my Neovim config, lol</p>
+            <h3 class="text-lg font-medium text-white mb-2">{('home.skills.lua.title')}</h3>
+            <p class="text-sm text-neutral-400">{('home.skills.lua.desc')}</p>
           </div>
 
           <div class="card p-6 bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-lg transition-all hover:bg-white/[0.05]">
@@ -92,8 +90,8 @@ const welcomeMessages = [
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1-5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
               </div>
             </div>
-            <h3 class="text-lg font-medium text-white mb-2">UI/UX Design</h3>
-            <p class="text-sm text-neutral-400">I like making things look pretty</p>
+            <h3 class="text-lg font-medium text-white mb-2">{('home.skills.uiux.title')}</h3>
+            <p class="text-sm text-neutral-400">{('home.skills.uiux.desc')}</p>
           </div>
 
           <div class="card p-6 bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-lg transition-all hover:bg-white/[0.05]">
@@ -102,8 +100,8 @@ const welcomeMessages = [
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
               </div>
             </div>
-            <h3 class="text-lg font-medium text-white mb-2">Workflow Optimization</h3>
-            <p class="text-sm text-neutral-400">I spend way too much time on this</p>
+            <h3 class="text-lg font-medium text-white mb-2">{('home.skills.workflow.title')}</h3>
+            <p class="text-sm text-neutral-400">{('home.skills.workflow.desc')}</p>
           </div>
 
           <div class="card p-6 bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-lg transition-all hover:bg-white/[0.05]">
@@ -112,8 +110,8 @@ const welcomeMessages = [
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l-5.5 9h11L12 2z"></path><circle cx="17.5" cy="17.5" r="3.5"></circle><circle cx="6.5" cy="17.5" r="3.5"></circle></svg>
               </div>
             </div>
-            <h3 class="text-lg font-medium text-white mb-2">WebGL</h3>
-            <p class="text-sm text-neutral-400">Still learning, but I love the shiny stuff</p>
+            <h3 class="text-lg font-medium text-white mb-2">{('home.skills.webgl.title')}</h3>
+            <p class="text-sm text-neutral-400">{('home.skills.webgl.desc')}</p>
           </div>
         </div>
       </div>
@@ -123,12 +121,12 @@ const welcomeMessages = [
     <section class="py-24 px-4">
       <div class="container max-w-4xl mx-auto text-center">
         <div class="bg-gradient-to-r from-blue-900/20 to-purple-900/20 backdrop-blur-sm border border-white/5 rounded-lg p-8 sm:p-12">
-          <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Want to chat?</h2>
+          <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">{('home.cta.title')}</h2>
           <p class="text-neutral-400 mb-6 max-w-lg mx-auto">
-            I'm not really looking for big collaborations, but I'm always down to chat about code, games, or whatever!
+            {('home.cta.desc')}
           </p>
-          <a href="/contact/" class="inline-block btn bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 rounded-md px-6 py-3 text-sm font-medium transition-all text-white">
-            Say hello
+          <a class="inline-block btn bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 rounded-md px-6 py-3 text-sm font-medium transition-all text-white">
+            {('home.cta.button')}
           </a>
         </div>
       </div>
@@ -199,12 +197,11 @@ const welcomeMessages = [
 
     // Function to change welcome message with proper animation
     function changeWelcomeMessage() {
+      if (!welcomeText || !languageIndicator) return;
       isAnimating = true;
 
       // Start fade-out animation
       welcomeText.classList.add('fade-out');
-      languageIndicator.style.opacity = '0';
-      languageIndicator.style.transition = 'opacity 0.5s ease-in-out';
 
       // Wait for fade-out to complete
       setTimeout(() => {
