@@ -1,0 +1,134 @@
+---
+---
+
+<div id="render-alert" class="render-alert">
+  <div class="render-alert-content">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="alert-icon">
+      <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+      <line x1="12" y1="9" x2="12" y2="13"></line>
+      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+    </svg>
+    <span id="render-alert-text"></span>
+    <button id="render-alert-dismiss" class="render-alert-dismiss" aria-label="Dismiss">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<style>
+  .render-alert {
+    position: fixed;
+    top: 70px; /* Below the header */
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 40;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  .render-alert.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .render-alert-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--theme-bg-highlight);
+    border: 1px solid var(--theme-terminal-black);
+    border-radius: 8px;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    pointer-events: auto;
+    max-width: 90%;
+  }
+
+  .alert-icon {
+    color: var(--theme-yellow);
+    flex-shrink: 0;
+  }
+
+  .render-alert-dismiss {
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--theme-fg-dark);
+    cursor: none;
+    padding: 2px;
+    margin-left: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .render-alert-dismiss:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--theme-fg);
+  }
+
+  @media (pointer: coarse) {
+    .render-alert-dismiss {
+      cursor: pointer;
+    }
+  }
+
+  /* Light theme adjustments */
+  :global(.theme-light) .render-alert-content {
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  :global(.theme-light) .render-alert-dismiss:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+</style>
+
+<script>
+  import { RenderingMode } from '../utils/progressiveRenderer';
+
+  document.addEventListener('astro:page-load', () => {
+    setupRenderAlert();
+  });
+
+  function setupRenderAlert() {
+    const alertElement = document.getElementById('render-alert');
+    const alertTextElement = document.getElementById('render-alert-text');
+    const dismissButton = document.getElementById('render-alert-dismiss');
+
+    if (!alertElement || !alertTextElement || !dismissButton) return;
+
+    // Check if the user has dismissed the alert before
+    const alertDismissed = localStorage.getItem('render-alert-dismissed') === 'true';
+
+    if (alertDismissed) return;
+
+    // Listen for rendering mode changes
+    window.addEventListener('renderingModeChange', (e) => {
+      const detail = (e as CustomEvent<{mode: RenderingMode}>).detail;
+
+      if (detail.mode === RenderingMode.FALLBACK) {
+        alertTextElement.textContent = 'Using basic rendering mode. For the best experience, use a browser that supports WebGL.';
+        alertElement.classList.add('visible');
+      } else if (detail.mode === RenderingMode.WEBGL) {
+        alertTextElement.textContent = 'Using WebGL rendering. For even better performance, use a WebGPU-compatible browser.';
+        alertElement.classList.add('visible');
+      }
+    });
+
+    // Set up dismiss button
+    dismissButton.addEventListener('click', () => {
+      alertElement.classList.remove('visible');
+      localStorage.setItem('render-alert-dismissed', 'true');
+    });
+  }
+</script>

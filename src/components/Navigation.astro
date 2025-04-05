@@ -4,46 +4,57 @@ const { pathname } = Astro.url;
 const isActive = (path: string) => pathname === path || pathname.startsWith(path);
 ---
 
-<header class="fixed w-full top-0 z-40 bg-opacity-80 backdrop-blur-md bg-neutral-900/30 border-b border-white/5">
+<header class="fixed w-full top-0 z-40 backdrop-blur-md border-b border-white/5 transition-colors duration-300">
   <div class="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
     <a href="/" class="text-xl font-medium perspective-text">
       <span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">/</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">~</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">/</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">v</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">e</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">r</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">m</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">i</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">l</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">l</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">i</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">o</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">n</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">p</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">a</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">w</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">s</span>
     </a>
 
-    <nav class="hidden md:block">
-      <ul class="flex items-center space-x-8">
-        <li>
-          <a href="/" class={`nav-link text-sm font-medium transition-colors ${isActive('/') && !isActive('/about') && !isActive('/projects') && !isActive('/contact') ? 'active' : ''}`}>
-            home
-          </a>
-        </li>
-        <li>
-          <a href="/about/" class={`nav-link text-sm font-medium transition-colors ${isActive('/about') ? 'active' : ''}`}>
-            about
-          </a>
-        </li>
-        <li>
-          <a href="/projects/" class={`nav-link text-sm font-medium transition-colors ${isActive('/projects') ? 'active' : ''}`}>
-            projects
-          </a>
-        </li>
-        <li>
-          <a href="/contact/" class={`nav-link text-sm font-medium transition-colors ${isActive('/contact') ? 'active' : ''}`}>
-            contact
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <div class="hidden md:flex items-center gap-6">
+      <nav>
+        <ul class="flex items-center space-x-8">
+          <li>
+            <a href="/" class={`nav-link text-sm font-medium transition-colors ${isActive('/') && !isActive('/about') && !isActive('/projects') && !isActive('/contact') ? 'active' : ''}`}>
+              home
+            </a>
+          </li>
+          <li>
+            <a href="/about/" class={`nav-link text-sm font-medium transition-colors ${isActive('/about') ? 'active' : ''}`}>
+              about
+            </a>
+          </li>
+          <li>
+            <a href="/projects/" class={`nav-link text-sm font-medium transition-colors ${isActive('/projects') ? 'active' : ''}`}>
+              projects
+            </a>
+          </li>
+          <li>
+            <a href="/contact/" class={`nav-link text-sm font-medium transition-colors ${isActive('/contact') ? 'active' : ''}`}>
+              contact
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-    <button id="menuButton" class="md:hidden flex flex-col space-y-1.5 p-2" aria-label="Menu">
-      <span class="w-6 h-0.5 bg-white block transition-transform"></span>
-      <span class="w-6 h-0.5 bg-white block transition-opacity"></span>
-      <span class="w-6 h-0.5 bg-white block transition-transform"></span>
-    </button>
+      <div class="theme-control">
+        <slot />
+      </div>
+    </div>
+
+    <div class="md:hidden flex items-center gap-4">
+      <div class="theme-control-mobile">
+        <slot />
+      </div>
+      <button id="menuButton" class="flex flex-col space-y-1.5 p-2" aria-label="Menu">
+        <span class="w-6 h-0.5 bg-current block transition-transform duration-300"></span>
+        <span class="w-6 h-0.5 bg-current block transition-opacity duration-300"></span>
+        <span class="w-6 h-0.5 bg-current block transition-transform duration-300"></span>
+      </button>
+    </div>
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobileMenu" class="fixed inset-0 bg-neutral-900/95 backdrop-blur-lg z-50 flex flex-col items-center justify-center transform translate-x-full transition-transform duration-300 ease-in-out">
+  <div id="mobileMenu" class="fixed inset-0 z-50 flex flex-col items-center justify-center transform translate-x-full transition-transform duration-300 ease-in-out">
     <button id="closeMenuButton" class="absolute top-4 right-4 p-2" aria-label="Close menu">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -54,22 +65,22 @@ const isActive = (path: string) => pathname === path || pathname.startsWith(path
     <nav>
       <ul class="flex flex-col space-y-8 items-center text-center">
         <li>
-          <a href="/" class="text-2xl font-medium hover:text-white transition-colors">
+          <a href="/" class="text-2xl font-medium transition-colors">
             home
           </a>
         </li>
         <li>
-          <a href="/about/" class="text-2xl font-medium hover:text-white transition-colors">
+          <a href="/about/" class="text-2xl font-medium transition-colors">
             about
           </a>
         </li>
         <li>
-          <a href="/projects/" class="text-2xl font-medium hover:text-white transition-colors">
+          <a href="/projects/" class="text-2xl font-medium transition-colors">
             projects
           </a>
         </li>
         <li>
-          <a href="/contact/" class="text-2xl font-medium hover:text-white transition-colors">
+          <a href="/contact/" class="text-2xl font-medium transition-colors">
             contact
           </a>
         </li>
@@ -79,39 +90,115 @@ const isActive = (path: string) => pathname === path || pathname.startsWith(path
 </header>
 
 <script>
+  import { ThemeManager } from '../utils/themeManager';
+
   // Mobile menu functionality
-  const menuButton = document.getElementById('menuButton');
-  const closeMenuButton = document.getElementById('closeMenuButton');
-  const mobileMenu = document.getElementById('mobileMenu');
-
-  if (menuButton && closeMenuButton && mobileMenu) {
-    menuButton.addEventListener('click', () => {
-      mobileMenu.classList.remove('translate-x-full');
-      document.body.style.overflow = 'hidden';
-    });
-
-    closeMenuButton.addEventListener('click', () => {
-      mobileMenu.classList.add('translate-x-full');
-      document.body.style.overflow = '';
-    });
-  }
-
-  // Re-initialize after Astro view transitions
-  document.addEventListener('astro:page-load', () => {
+  const setupMobileMenu = () => {
     const menuButton = document.getElementById('menuButton');
     const closeMenuButton = document.getElementById('closeMenuButton');
     const mobileMenu = document.getElementById('mobileMenu');
+    const menuSpans = menuButton?.querySelectorAll('span');
 
     if (menuButton && closeMenuButton && mobileMenu) {
       menuButton.addEventListener('click', () => {
         mobileMenu.classList.remove('translate-x-full');
         document.body.style.overflow = 'hidden';
+
+        // Animate hamburger to X
+        if (menuSpans && menuSpans.length === 3) {
+          menuSpans[0].classList.add('rotate-45', 'translate-y-[7px]');
+          menuSpans[1].classList.add('opacity-0');
+          menuSpans[2].classList.add('-rotate-45', '-translate-y-[7px]');
+        }
       });
 
       closeMenuButton.addEventListener('click', () => {
         mobileMenu.classList.add('translate-x-full');
         document.body.style.overflow = '';
+
+        // Reset hamburger
+        if (menuSpans && menuSpans.length === 3) {
+          menuSpans[0].classList.remove('rotate-45', 'translate-y-[7px]');
+          menuSpans[1].classList.remove('opacity-0');
+          menuSpans[2].classList.remove('-rotate-45', '-translate-y-[7px]');
+        }
       });
     }
-  });
+  };
+
+  // Apply theme to navigation
+  const setupNavTheme = () => {
+    const header = document.querySelector('header');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (!header || !mobileMenu) return;
+
+    const themeManager = ThemeManager.getInstance();
+
+    const updateTheme = (theme: string) => {
+      if (theme === 'dark') {
+        header.classList.remove('bg-white/80', 'border-neutral-200/50');
+        header.classList.add('bg-neutral-900/30', 'border-white/5');
+
+        mobileMenu.classList.remove('bg-white/95', 'text-neutral-800');
+        mobileMenu.classList.add('bg-neutral-900/95', 'text-white');
+      } else {
+        header.classList.remove('bg-neutral-900/30', 'border-white/5');
+        header.classList.add('bg-white/80', 'border-neutral-200/50');
+
+        mobileMenu.classList.remove('bg-neutral-900/95', 'text-white');
+        mobileMenu.classList.add('bg-white/95', 'text-neutral-800');
+      }
+    };
+
+    // Initial theme
+    updateTheme(themeManager.getCurrentEffectiveTheme());
+
+    // Subscribe to theme changes
+    themeManager.subscribe(updateTheme);
+  };
+
+  // Initialize on page load
+  const setupNavigation = () => {
+    setupMobileMenu();
+    setupNavTheme();
+  };
+
+  document.addEventListener('astro:page-load', setupNavigation);
+  setupNavigation();
 </script>
+
+<style>
+  /* Mobile menu styling with theme support */
+  #mobileMenu {
+    backdrop-filter: blur(16px);
+  }
+
+  .theme-control, .theme-control-mobile {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Smoother animations */
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 0.2s ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+
+  /* Animation states for mobile menu button */
+  #menuButton span {
+    transform-origin: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+</style>

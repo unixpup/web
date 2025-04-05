@@ -1,6 +1,5 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import Navigation from '@components/Navigation.astro';
 import Footer from '@components/Footer.astro';
 import { fade } from 'astro:transitions';
 
@@ -11,7 +10,7 @@ const pageTitle: string = "Projects | vermillionpaws";
 const projects = [
   {
     title: "web",
-    description: "Personal website built with Astro focusing on minimalist design principles and WebGL animations.",
+    description: "This website! Built with Astro and way too many gradient effects. I spent too much time making the animations look nice.",
     image: "/project-web.jpg",
     tags: ["astro", "typescript", "three.js", "webgl"],
     link: "https://github.com/vermillionpaws/web",
@@ -19,34 +18,24 @@ const projects = [
   },
   {
     title: "nvim",
-    description: "Custom Neovim configuration with extensive plugin integration for enhanced development workflow.",
+    description: "My over-the-top Neovim setup that I'm constantly tweaking instead of actually working on real projects lol.",
     image: "/project-nvim.jpg",
     tags: ["lua", "neovim", "vim-script"],
     link: "https://github.com/vermillionpaws/nvim",
     featured: true
   },
   {
-    title: "vscode-theme",
-    description: "A minimalist dark theme for Visual Studio Code with carefully selected colors for optimal readability.",
-    image: "/project-theme.jpg",
-    tags: ["vscode", "theme", "json"],
-    link: "#",
-    featured: false
-  },
-  {
     title: "dotfiles",
-    description: "Configuration files for Linux environment, including terminal setups and productivity tools.",
+    description: "My Linux configs that I've spent way too much time on. Includes my terminal setup, aliases, and other random stuff.",
     image: "/project-dotfiles.jpg",
-    tags: ["bash", "linux", "configuration"],
-    link: "#",
+    tags: ["dots", "dotfiles", "linux", "configuration"],
+    link: "https://github.com/vermillionpaws/dotfiles",
     featured: false
   }
 ];
 ---
 
 <Layout title={pageTitle}>
-  <Navigation />
-
   <main class="min-h-screen pt-24 pb-20">
     <div class="container max-w-5xl mx-auto px-4 md:px-6">
       <div transition:animate={fade({ duration: '0.4s' })}>
@@ -129,6 +118,8 @@ const projects = [
 </Layout>
 
 <script>
+  import { gsap } from 'gsap';
+
   // Project filtering
   document.addEventListener('astro:page-load', () => {
     const filterBtns = document.querySelectorAll('.filter-btn');
@@ -143,48 +134,50 @@ const projects = [
         btn.classList.add('active', 'bg-white/10');
         btn.classList.remove('bg-white/5');
 
-        const filter = btn.getAttribute('data-filter');
+        const filterValue = btn.getAttribute('data-filter');
+        const filter = filterValue || 'all'; // Default to 'all' if null
 
         // Filter projects
         projectCards.forEach(card => {
           if (filter === 'all') {
-            card.style.display = 'block';
+            (card as HTMLElement).style.display = 'block';
             // Add animation
             setTimeout(() => {
-              card.style.opacity = '1';
-              card.style.transform = 'translateY(0)';
+              (card as HTMLElement).style.opacity = '1';
+              (card as HTMLElement).style.transform = 'translateY(0)';
             }, 50);
           } else if (filter === 'featured') {
             if (card.getAttribute('data-featured') === 'true') {
-              card.style.display = 'block';
+              (card as HTMLElement).style.display = 'block';
               // Add animation
               setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
+                (card as HTMLElement).style.opacity = '1';
+                (card as HTMLElement).style.transform = 'translateY(0)';
               }, 50);
             } else {
               // Hide with animation
-              card.style.opacity = '0';
-              card.style.transform = 'translateY(20px)';
+              (card as HTMLElement).style.opacity = '0';
+              (card as HTMLElement).style.transform = 'translateY(20px)';
               setTimeout(() => {
-                card.style.display = 'none';
+                (card as HTMLElement).style.display = 'none';
               }, 300);
             }
           } else {
-            const tags = card.getAttribute('data-tags').split(' ');
+            const tagsAttr = card.getAttribute('data-tags');
+            const tags = tagsAttr ? tagsAttr.split(' ') : [];
             if (tags.includes(filter)) {
-              card.style.display = 'block';
+              (card as HTMLElement).style.display = 'block';
               // Add animation
               setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
+                (card as HTMLElement).style.opacity = '1';
+                (card as HTMLElement).style.transform = 'translateY(0)';
               }, 50);
             } else {
               // Hide with animation
-              card.style.opacity = '0';
-              card.style.transform = 'translateY(20px)';
+              (card as HTMLElement).style.opacity = '0';
+              (card as HTMLElement).style.transform = 'translateY(20px)';
               setTimeout(() => {
-                card.style.display = 'none';
+                (card as HTMLElement).style.display = 'none';
               }, 300);
             }
           }
@@ -194,16 +187,41 @@ const projects = [
 
     // Set initial animation state
     projectCards.forEach((card, index) => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      card.style.transition = 'opacity 0.3s ease, transform 0.5s ease';
+      (card as HTMLElement).style.opacity = '0';
+      (card as HTMLElement).style.transform = 'translateY(20px)';
+      (card as HTMLElement).style.transition = 'opacity 0.3s ease, transform 0.5s ease';
 
       // Stagger the animations
       setTimeout(() => {
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
+        (card as HTMLElement).style.opacity = '1';
+        (card as HTMLElement).style.transform = 'translateY(0)';
       }, 100 + (index * 50));
     });
+
+    // Fix cursor for the projects page
+    const cursorFollow = document.getElementById('cursor-follow');
+    const links = document.querySelectorAll('a');
+
+    // Reattach event listeners for links
+    if (cursorFollow) {
+      links.forEach((link) => {
+        link.addEventListener('mouseenter', () => {
+          gsap.to(cursorFollow, {
+            scale: 2,
+            opacity: 0.8,
+            duration: 0.3
+          });
+        });
+
+        link.addEventListener('mouseleave', () => {
+          gsap.to(cursorFollow, {
+            scale: 1,
+            opacity: 0.5,
+            duration: 0.3
+          });
+        });
+      });
+    }
   });
 
   // WebGL hover effects
@@ -213,11 +231,17 @@ const projects = [
     featuredProjects.forEach(project => {
       project.addEventListener('mouseenter', () => {
         // Additional WebGL interactions could be added here
-        project.querySelector('h3').style.transform = 'translateX(10px)';
+        const heading = project.querySelector('h3');
+        if (heading) {
+          (heading as HTMLElement).style.transform = 'translateX(10px)';
+        }
       });
 
       project.addEventListener('mouseleave', () => {
-        project.querySelector('h3').style.transform = 'translateX(0)';
+        const heading = project.querySelector('h3');
+        if (heading) {
+          (heading as HTMLElement).style.transform = 'translateX(0)';
+        }
       });
     });
   });

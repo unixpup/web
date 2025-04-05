@@ -55,7 +55,4 @@ export default defineConfig({
     sitemap(),
     tailwind() // Using default configuration for Tailwind v3
   ],
-
-  // Enable view transitions for smoother page navigation
-  viewTransitions: true,
 });

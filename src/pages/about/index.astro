@@ -1,6 +1,5 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import Navigation from '@components/Navigation.astro';
 import Footer from '@components/Footer.astro';
 
 // Define page metadata with types
@@ -8,8 +7,6 @@ const pageTitle: string = "About | vermillionpaws";
 ---
 
 <Layout title={pageTitle}>
-  <Navigation />
-
   <main class="min-h-screen pt-24 pb-20">
     <div class="container max-w-4xl mx-auto px-4 md:px-6">
       <div class="animate-fade-in animate-slide-up">
@@ -25,27 +22,26 @@ const pageTitle: string = "About | vermillionpaws";
         <div class="mb-16">
           <div class="prose prose-invert max-w-none">
             <p class="text-lg md:text-xl mb-6 text-neutral-300">
-              Hello, I'm a programmer focused on creating efficient and minimalist solutions.
-              I believe in software that respects both functionality and aesthetics.
+              Hey!
             </p>
 
             <p class="mb-6 text-neutral-400">
-              My journey as a developer began with a fascination for clean design and efficient functionality. I've always been drawn to the intersection of technology and creativity, seeking ways to build software that not only works flawlessly but also provides an intuitive and pleasant user experience.
+              I got into programming because I love when things look good AND work well. I spend way too much time tweaking how my code editor looks, and I'm pretty obsessed with making websites that don't just function, but actually feel nice to use.
             </p>
 
             <p class="mb-6 text-neutral-400">
-              I specialize in modern web development with a focus on performance, accessibility, and minimalist design. While I'm passionate about pushing the boundaries of what's possible on the web, I maintain a strong commitment to core principles like readability, maintainability, and user-centric design.
+              I mostly work with modern web stuff - Astro, React, TypeScript, that kind of thing. I try to keep my projects simple and clean, but I can't resist adding little animations and details that make things feel special.
             </p>
 
             <p class="mb-6 text-neutral-400">
-              When I'm not coding, you might find me exploring the latest design trends, contributing to open-source projects, or optimizing my development environment for peak efficiency.
+              When I'm not coding, I'm probably playing video games, binge-watching something, or endlessly customizing my Linux setup. I also spend way too much time on Discord.
             </p>
           </div>
         </div>
 
         <!-- Timeline -->
         <div class="mb-16">
-          <h2 class="text-2xl font-bold mb-6 text-white">Experience Timeline</h2>
+          <h2 class="text-2xl font-bold mb-6 text-white">What I've Been Up To</h2>
 
           <div class="space-y-10">
             <!-- Timeline item -->
@@ -53,15 +49,15 @@ const pageTitle: string = "About | vermillionpaws";
               <div class="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full border border-blue-500 bg-neutral-900"></div>
               <div>
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
-                  <h3 class="text-lg font-semibold text-white">Senior Web Developer</h3>
-                  <span class="text-sm text-neutral-500">2022 - Present</span>
+                  <h3 class="text-lg font-semibold text-white">Web Development</h3>
+                  <span class="text-sm text-neutral-500">2020 - Present</span>
                 </div>
-                <p class="text-neutral-400 mb-2">Leading development for minimalist web applications with a focus on performance and design.</p>
+                <p class="text-neutral-400 mb-2">Working with modern web frameworks and technologies to build responsive, accessible, and performant websites and applications.</p>
                 <div class="flex flex-wrap gap-2 mt-2">
-                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Astro</span>
-                  <span class="px-2 py-1 bg-white/5 text-xs rounded">React</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">JavaScript</span>
                   <span class="px-2 py-1 bg-white/5 text-xs rounded">TypeScript</span>
-                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Three.js</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">React</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Astro</span>
                 </div>
               </div>
             </div>
@@ -71,14 +67,15 @@ const pageTitle: string = "About | vermillionpaws";
               <div class="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full border border-purple-500 bg-neutral-900"></div>
               <div>
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
-                  <h3 class="text-lg font-semibold text-white">Neovim Plugin Developer</h3>
-                  <span class="text-sm text-neutral-500">2020 - Present</span>
+                  <h3 class="text-lg font-semibold text-white">System Administration & Security</h3>
+                  <span class="text-sm text-neutral-500">Experience</span>
                 </div>
-                <p class="text-neutral-400 mb-2">Creating and maintaining custom plugins for Neovim to enhance developer productivity.</p>
+                <p class="text-neutral-400 mb-2">Managing system administration tasks and implementing security practices across various systems including Linux and BSD environments.</p>
                 <div class="flex flex-wrap gap-2 mt-2">
-                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Lua</span>
-                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Neovim API</span>
-                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Vim Script</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Linux</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">BSD</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Security</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Administration</span>
                 </div>
               </div>
             </div>
@@ -88,15 +85,15 @@ const pageTitle: string = "About | vermillionpaws";
               <div class="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full border border-green-500 bg-neutral-900"></div>
               <div>
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
-                  <h3 class="text-lg font-semibold text-white">Frontend Developer</h3>
-                  <span class="text-sm text-neutral-500">2019 - 2022</span>
+                  <h3 class="text-lg font-semibold text-white">Linux Journey</h3>
+                  <span class="text-sm text-neutral-500">2014 - Present</span>
                 </div>
-                <p class="text-neutral-400 mb-2">Developed responsive web applications with a focus on performance and user experience.</p>
+                <p class="text-neutral-400 mb-2">Exploring various Linux distributions and customizing environments. Experienced with multiple editors including Neovim, Vim, Emacs, VSCode, Kakoune, and Vis.</p>
                 <div class="flex flex-wrap gap-2 mt-2">
-                  <span class="px-2 py-1 bg-white/5 text-xs rounded">JavaScript</span>
-                  <span class="px-2 py-1 bg-white/5 text-xs rounded">CSS</span>
-                  <span class="px-2 py-1 bg-white/5 text-xs rounded">HTML</span>
-                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Vue.js</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Linux</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Neovim</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Emacs</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Customization</span>
                 </div>
               </div>
             </div>
@@ -105,7 +102,7 @@ const pageTitle: string = "About | vermillionpaws";
 
         <!-- Skills section -->
         <div class="mb-16">
-          <h2 class="text-2xl font-bold mb-6 text-white">Skills & Expertise</h2>
+          <h2 class="text-2xl font-bold mb-6 text-white">Skills & Stuff I Know</h2>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div>
@@ -113,7 +110,7 @@ const pageTitle: string = "About | vermillionpaws";
               <div class="space-y-3">
                 <div>
                   <div class="flex justify-between mb-1">
-                    <span class="text-sm font-medium text-neutral-300">TypeScript</span>
+                    <span class="text-sm font-medium text-neutral-300">JavaScript/TypeScript</span>
                     <span class="text-xs text-neutral-500">90%</span>
                   </div>
                   <div class="w-full bg-neutral-800 rounded-full h-1.5">
@@ -123,21 +120,31 @@ const pageTitle: string = "About | vermillionpaws";
 
                 <div>
                   <div class="flex justify-between mb-1">
-                    <span class="text-sm font-medium text-neutral-300">JavaScript</span>
-                    <span class="text-xs text-neutral-500">95%</span>
+                    <span class="text-sm font-medium text-neutral-300">HTML/CSS</span>
+                    <span class="text-xs text-neutral-500">88%</span>
                   </div>
                   <div class="w-full bg-neutral-800 rounded-full h-1.5">
-                    <div class="bg-gradient-to-r from-blue-500 to-blue-700 h-1.5 rounded-full" style="width: 95%"></div>
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-700 h-1.5 rounded-full" style="width: 88%"></div>
                   </div>
                 </div>
 
                 <div>
                   <div class="flex justify-between mb-1">
                     <span class="text-sm font-medium text-neutral-300">Lua</span>
-                    <span class="text-xs text-neutral-500">85%</span>
+                    <span class="text-xs text-neutral-500">75%</span>
                   </div>
                   <div class="w-full bg-neutral-800 rounded-full h-1.5">
-                    <div class="bg-gradient-to-r from-blue-500 to-blue-700 h-1.5 rounded-full" style="width: 85%"></div>
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-700 h-1.5 rounded-full" style="width: 75%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-neutral-300">C</span>
+                    <span class="text-xs text-neutral-500">65%</span>
+                  </div>
+                  <div class="w-full bg-neutral-800 rounded-full h-1.5">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-700 h-1.5 rounded-full" style="width: 65%"></div>
                   </div>
                 </div>
               </div>
@@ -149,6 +156,26 @@ const pageTitle: string = "About | vermillionpaws";
                 <div>
                   <div class="flex justify-between mb-1">
                     <span class="text-sm font-medium text-neutral-300">Astro</span>
+                    <span class="text-xs text-neutral-500">85%</span>
+                  </div>
+                  <div class="w-full bg-neutral-800 rounded-full h-1.5">
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-700 h-1.5 rounded-full" style="width: 85%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-neutral-300">React</span>
+                    <span class="text-xs text-neutral-500">82%</span>
+                  </div>
+                  <div class="w-full bg-neutral-800 rounded-full h-1.5">
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-700 h-1.5 rounded-full" style="width: 82%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-neutral-300">Text Editors</span>
                     <span class="text-xs text-neutral-500">95%</span>
                   </div>
                   <div class="w-full bg-neutral-800 rounded-full h-1.5">
@@ -158,21 +185,11 @@ const pageTitle: string = "About | vermillionpaws";
 
                 <div>
                   <div class="flex justify-between mb-1">
-                    <span class="text-sm font-medium text-neutral-300">Neovim</span>
-                    <span class="text-xs text-neutral-500">90%</span>
+                    <span class="text-sm font-medium text-neutral-300">Linux/BSD</span>
+                    <span class="text-xs text-neutral-500">88%</span>
                   </div>
                   <div class="w-full bg-neutral-800 rounded-full h-1.5">
-                    <div class="bg-gradient-to-r from-purple-500 to-purple-700 h-1.5 rounded-full" style="width: 90%"></div>
-                  </div>
-                </div>
-
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-sm font-medium text-neutral-300">Three.js</span>
-                    <span class="text-xs text-neutral-500">80%</span>
-                  </div>
-                  <div class="w-full bg-neutral-800 rounded-full h-1.5">
-                    <div class="bg-gradient-to-r from-purple-500 to-purple-700 h-1.5 rounded-full" style="width: 80%"></div>
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-700 h-1.5 rounded-full" style="width: 88%"></div>
                   </div>
                 </div>
               </div>
@@ -183,10 +200,7 @@ const pageTitle: string = "About | vermillionpaws";
         <!-- Download resume / contact -->
         <div class="flex flex-col sm:flex-row items-center gap-6 justify-center bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-lg p-8">
           <a href="/contact" class="btn bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 rounded-md px-6 py-3 text-sm font-medium transition-all text-white w-full sm:w-auto text-center">
-            Get in touch
-          </a>
-          <a href="#" class="btn bg-white/5 hover:bg-white/10 border border-white/10 rounded-md px-6 py-3 text-sm font-medium transition-all w-full sm:w-auto text-center">
-            Download Resume
+            Say hello!
           </a>
         </div>
       </div>

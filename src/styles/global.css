@@ -4,38 +4,47 @@
 
 @import "tailwindcss";
 
-/* Tokyo Night color scheme */
-
+/* Tokyo Night color scheme with theme variable support */
 :root {
-  --background: theme('colors.tokyo.bg');
-  --foreground: theme('colors.tokyo.fg');
-
-  --card: theme('colors.tokyo.bg-highlight');
-  --card-foreground: theme('colors.tokyo.fg');
-
-  --popover: theme('colors.tokyo.bg');
-  --popover-foreground: theme('colors.tokyo.fg');
-
-  --primary: theme('colors.tokyo.blue');
-  --primary-foreground: theme('colors.tokyo.bg');
-
-  --secondary: theme('colors.tokyo.purple');
-  --secondary-foreground: theme('colors.tokyo.fg');
-
-  --muted: theme('colors.tokyo.terminal-black');
-  --muted-foreground: theme('colors.tokyo.fg-dark');
-
-  --accent: theme('colors.tokyo.cyan');
-  --accent-foreground: theme('colors.tokyo.bg');
-
-  --destructive: theme('colors.tokyo.red');
-  --destructive-foreground: theme('colors.tokyo.fg');
-
-  --border: theme('colors.tokyo.terminal-black');
-  --input: theme('colors.tokyo.terminal-black');
-  --ring: theme('colors.tokyo.purple');
+  /* Default to dark theme if JavaScript is disabled */
+  --theme-bg: #1a1b26;
+  --theme-bg-highlight: #292e42;
+  --theme-terminal-black: #414868;
+  --theme-fg: #a9b1d6;
+  --theme-fg-dark: #565f89;
+  --theme-fg-gutter: #3b4261;
+  --theme-comment: #565f89;
+  --theme-blue: #7aa2f7;
+  --theme-cyan: #7dcfff;
+  --theme-green: #9ece6a;
+  --theme-magenta: #bb9af7;
+  --theme-purple: #9d7cd8;
+  --theme-red: #f7768e;
+  --theme-orange: #ff9e64;
+  --theme-yellow: #e0af68;
 
   --cursor-size: 24px;
+}
+
+/* Provide light theme defaults based on system preference when JavaScript is disabled */
+@media (prefers-color-scheme: light) {
+  :root {
+    --theme-bg: #e1e2e7;
+    --theme-bg-highlight: #c8cad6;
+    --theme-terminal-black: #9699a3;
+    --theme-fg: #343b58;
+    --theme-fg-dark: #565a6e;
+    --theme-fg-gutter: #a8aecb;
+    --theme-comment: #848cb5;
+    --theme-blue: #2e7de9;
+    --theme-cyan: #007197;
+    --theme-green: #587539;
+    --theme-magenta: #9854f1;
+    --theme-purple: #7847bd;
+    --theme-red: #f52a65;
+    --theme-orange: #b15c00;
+    --theme-yellow: #8c6c3e;
+  }
 }
 
 * {
@@ -46,12 +55,17 @@
 
 body {
   font-family: 'Satoshi', sans-serif;
-  background-color: #0a0a0a;
-  color: #f1f1f1;
   overflow-x: hidden;
   line-height: 1.5;
   letter-spacing: -0.02em;
-  @apply bg-tokyo-bg text-tokyo-fg;
+  @apply text-tokyo-fg;
+
+  /* Use theme variables */
+  background-color: var(--theme-bg);
+  color: var(--theme-fg);
+
+  /* Smooth theme transitions */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom cursor style */
@@ -73,20 +87,21 @@ html {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.2;
-  @apply text-tokyo-blue;
+  color: var(--theme-blue);
+  transition: color 0.3s ease;
 }
 
 /* Link hover effects */
 a {
   position: relative;
   text-decoration: none;
-  color: inherit;
+  color: var(--theme-cyan);
   cursor: none;
-  transition: opacity 0.2s ease;
-  @apply text-tokyo-cyan hover:text-tokyo-blue transition-colors;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 a:hover {
+  color: var(--theme-blue);
   opacity: 0.8;
 }
 
@@ -111,9 +126,21 @@ a:hover {
   transition: all 0.2s ease;
 }
 
+.theme-light .btn {
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
   transform: translateY(-1px);
+}
+
+.theme-dark .btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-light .btn:hover {
+  background-color: rgba(0, 0, 0, 0.08);
 }
 
 /* Navigation */
@@ -129,7 +156,7 @@ a:hover {
   width: 0;
   height: 1px;
   background-color: currentColor;
-  transition: width 0.3s ease;
+  transition: width 0.2s ease;
 }
 
 .nav-link:hover::after,
@@ -139,21 +166,42 @@ a:hover {
 
 /* Card style */
 .card {
-  background-color: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: var(--theme-bg-highlight);
+  border: 1px solid var(--theme-terminal-black);
   border-radius: 8px;
   padding: 1.5rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-light .card {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
 .card:hover {
   transform: translateY(-5px);
+}
+
+.theme-dark .card:hover {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.theme-light .card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* Section spacing */
 section {
   padding: 5rem 0;
+}
+
+/* Specific styling for themed sections */
+.theme-light section.bg-neutral-900\/30 {
+  background-color: rgba(200, 202, 214, 0.3);
+}
+
+.theme-light section.bg-neutral-900\/50 {
+  background-color: rgba(200, 202, 214, 0.5);
 }
 
 /* Grid layouts */
@@ -179,20 +227,20 @@ section {
 
 .perspective-text span {
   display: inline-block;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 .perspective-text:hover span {
   transform: translateY(-2px) rotateX(10deg);
 }
 
-/* Animation utilities */
+/* Animation utilities with improved performance */
 .animate-fade-in {
-  animation: fadeIn 0.5s ease forwards;
+  animation: fadeIn 0.4s ease forwards;
 }
 
 .animate-slide-up {
-  animation: slideUp 0.5s ease forwards;
+  animation: slideUp 0.4s ease forwards;
 }
 
 @keyframes fadeIn {
@@ -215,18 +263,121 @@ section {
   }
 }
 
-/* View transitions animation */
+/* View transitions animation - faster for performance */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 0.5s;
+  animation-duration: 0.3s;
 }
 
+/* Code styles that adapt to theme */
 @layer base {
   code {
-    @apply bg-tokyo-bg-highlight text-tokyo-green px-1.5 py-0.5 rounded;
+    background: var(--theme-bg-highlight);
+    color: var(--theme-green);
+    padding: 0.1em 0.3em;
+    border-radius: 0.25em;
+    font-size: 0.9em;
+  }
+
+  /* Improved tag contrast for the light theme */
+  .theme-light .px-2.py-1.bg-white\/5 {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--theme-fg);
+  }
+
+  /* Improve backgrounds with white opacity in light theme */
+  .theme-light .bg-white\/\[0\.03\] {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .theme-light .bg-white\/5 {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .theme-light .border-white\/5 {
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .theme-light .border-white\/10 {
+    border-color: rgba(0, 0, 0, 0.15);
+  }
+
+  /* Fix background opacity issues in skill cards */
+  .theme-light .card.bg-white\/\[0\.03\] {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* Improve top navigation bar in light theme */
+  .theme-light .border-neutral-800 {
+    border-color: #c8cad6;
+  }
+
+  /* Physics-based background fixes for light theme */
+  .theme-light canvas#physics-background {
+    opacity: 0.3;
+    filter: invert(1) hue-rotate(180deg);
+  }
+
+  /* Fix color text in light theme */
+  .theme-light .text-white {
+    color: var(--theme-fg);
+  }
+
+  .theme-light .text-neutral-300 {
+    color: var(--theme-fg-dark);
+  }
+
+  .theme-light .text-neutral-400 {
+    color: #555;
+  }
+
+  .theme-light .text-neutral-500 {
+    color: #666;
+  }
+
+  /* Fix backgrounds for progress bars in light mode */
+  .theme-light .bg-neutral-800 {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Fix timeline circles and borders in light mode */
+  .theme-light .border-l.border-neutral-800 {
+    border-color: rgba(0, 0, 0, 0.15);
+  }
+
+  .theme-light .bg-neutral-900 {
+    background-color: #f5f5f7;
   }
 
   ::selection {
-    @apply bg-tokyo-purple text-tokyo-bg;
+    background-color: var(--theme-purple);
+    color: var(--theme-bg);
+  }
+
+  /* Theme classes with CSS variable support */
+  .theme-dark {
+    --cursor-bg: #ffffff;
+  }
+
+  .theme-light {
+    --cursor-bg: #000000;
+  }
+
+  /* Project page specific light theme improvements */
+  .theme-light .filter-btn {
+    color: var(--theme-fg);
+  }
+
+  .theme-light .filter-btn.active {
+    color: var(--theme-blue);
+  }
+
+  /* Improve text color contrast in light mode */
+  .theme-light .text-neutral-400 {
+    color: #555;
+  }
+
+  .theme-light .text-neutral-500 {
+    color: #666;
   }
 }

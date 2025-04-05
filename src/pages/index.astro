@@ -1,6 +1,5 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import Navigation from '@components/Navigation.astro';
 import Footer from '@components/Footer.astro';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from "@vercel/speed-insights/astro";
@@ -10,8 +9,6 @@ const pageTitle: string = "vermillionpaws | developer";
 ---
 
 <Layout title={pageTitle}>
-  <Navigation />
-
   <main class="min-h-screen flex flex-col">
     <!-- Hero Section -->
     <section class="flex flex-col items-center justify-center pt-32 pb-24 px-4">
@@ -20,8 +17,8 @@ const pageTitle: string = "vermillionpaws | developer";
           <span>Build</span> <span class="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">beautiful</span> <span>experiences</span>
         </h1>
         <p class="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto mb-10">
-          Hello, I'm a programmer focused on creating efficient and minimalist solutions.
-          I believe in software that respects both functionality and aesthetics.
+          Hey! I'm a 19-year-old trans girl who loves coding and making cool stuff for the web.
+          I'm all about creating things that are both functional and look nice.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="/about/" class="btn bg-white/5 hover:bg-white/10 border border-white/10 rounded-md px-6 py-3 text-sm font-medium transition-all">
@@ -59,7 +56,7 @@ const pageTitle: string = "vermillionpaws | developer";
               </div>
             </div>
             <h3 class="text-lg font-medium text-white mb-2">Neovim</h3>
-            <p class="text-sm text-neutral-400">Configuration, customization, plugins</p>
+            <p class="text-sm text-neutral-400">I'm obsessed with customizing my editor</p>
           </div>
 
           <div class="card p-6 bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-lg transition-all hover:bg-white/[0.05]">
@@ -69,17 +66,17 @@ const pageTitle: string = "vermillionpaws | developer";
               </div>
             </div>
             <h3 class="text-lg font-medium text-white mb-2">Lua Scripting</h3>
-            <p class="text-sm text-neutral-400">Advanced scripting, plugin development</p>
+            <p class="text-sm text-neutral-400">Mostly for my Neovim config, lol</p>
           </div>
 
           <div class="card p-6 bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-lg transition-all hover:bg-white/[0.05]">
             <div class="flex items-center mb-4">
               <div class="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1-5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
               </div>
             </div>
             <h3 class="text-lg font-medium text-white mb-2">UI/UX Design</h3>
-            <p class="text-sm text-neutral-400">Minimalist design principles, interfaces</p>
+            <p class="text-sm text-neutral-400">I like making things look pretty</p>
           </div>
 
           <div class="card p-6 bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-lg transition-all hover:bg-white/[0.05]">
@@ -89,7 +86,7 @@ const pageTitle: string = "vermillionpaws | developer";
               </div>
             </div>
             <h3 class="text-lg font-medium text-white mb-2">Workflow Optimization</h3>
-            <p class="text-sm text-neutral-400">Development environment, automation</p>
+            <p class="text-sm text-neutral-400">I spend way too much time on this</p>
           </div>
 
           <div class="card p-6 bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-lg transition-all hover:bg-white/[0.05]">
@@ -99,7 +96,7 @@ const pageTitle: string = "vermillionpaws | developer";
               </div>
             </div>
             <h3 class="text-lg font-medium text-white mb-2">WebGL</h3>
-            <p class="text-sm text-neutral-400">Three.js, GLSL, creative coding</p>
+            <p class="text-sm text-neutral-400">Still learning, but I love the shiny stuff</p>
           </div>
         </div>
       </div>
@@ -109,12 +106,12 @@ const pageTitle: string = "vermillionpaws | developer";
     <section class="py-24 px-4">
       <div class="container max-w-4xl mx-auto text-center">
         <div class="bg-gradient-to-r from-blue-900/20 to-purple-900/20 backdrop-blur-sm border border-white/5 rounded-lg p-8 sm:p-12">
-          <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Interested in working together?</h2>
+          <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Want to chat?</h2>
           <p class="text-neutral-400 mb-6 max-w-lg mx-auto">
-            I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
+            I'm not really looking for big collaborations, but I'm always down to chat about code, games, or whatever!
           </p>
-          <a href="/contact/" class="inline-block btn bg-white text-black hover:bg-neutral-200 rounded-md px-6 py-3 text-sm font-medium transition-all">
-            Get in touch
+          <a href="/contact/" class="inline-block btn bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 rounded-md px-6 py-3 text-sm font-medium transition-all text-white">
+            Say hello
           </a>
         </div>
       </div>

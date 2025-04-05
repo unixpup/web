@@ -1,6 +1,9 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.css';
+import Navigation from '../components/Navigation.astro';
+import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+import RenderAlert from '../components/RenderAlert.astro';
 
 export interface Props {
 	title: string;
@@ -8,6 +11,13 @@ export interface Props {
 }
 
 const { title, description = "Personal website of vermillionpaws - programmer and minimalist designer" } = Astro.props;
+
+// Get all routes for prefetching
+const pages = await Astro.glob('../pages/**/*.astro');
+const routes = pages.map(page => {
+  const path = page.url?.replace(/^\/|\/$/g, '');
+  return path ? `/${path}/` : '/';
+}).filter(Boolean);
 ---
 
 <!doctype html>
@@ -19,158 +29,145 @@ const { title, description = "Personal website of vermillionpaws - programmer an
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<ViewTransitions />
+		<ViewTransitions transition:animate="slide" />
 		<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+
+		<!-- Prefetch routes -->
+		{routes.map(route => (
+			<link rel="prefetch" href={route} />
+		))}
 	</head>
 	<body class="min-h-screen bg-neutral-950 text-neutral-200">
 		<div id="webgl-container" class="fixed inset-0 z-0 pointer-events-none"></div>
 		<div id="cursor-follow" class="fixed w-6 h-6 rounded-full pointer-events-none z-50 transition-transform duration-100 ease-out mix-blend-difference bg-white opacity-50"></div>
+		<RenderAlert />
 		<div class="relative z-10">
+			<Navigation>
+				<ThemeSwitcher />
+			</Navigation>
 			<slot />
 		</div>
 	</body>
 </html>
 
 <script>
-	import * as THREE from 'three';
+	import { ProgressiveRenderer, RenderingMode } from '../utils/progressiveRenderer';
+	import { ThemeManager } from '../utils/themeManager';
 	import { gsap } from 'gsap';
 
-	// Custom cursor follow
-	const cursorFollow = document.getElementById('cursor-follow');
+	// Initialize theme manager
+	let themeManager: any;
+	let renderer: any;
 
-	document.addEventListener('mousemove', (e) => {
-		if (cursorFollow) {
+	// Custom cursor follow
+	const setupCursor = () => {
+		const cursorFollow = document.getElementById('cursor-follow');
+
+		if (!cursorFollow) return;
+
+		document.addEventListener('mousemove', (e) => {
 			gsap.to(cursorFollow, {
 				x: e.clientX - 12,
 				y: e.clientY - 12,
-				duration: 0.2,
+				duration: 0.1, // Faster animation for better performance feel
 				ease: 'power2.out'
 			});
-		}
-	});
-
-	// Initialize WebGL scene
-	const container = document.getElementById('webgl-container');
-	if (container) {
-		// Scene setup
-		const scene = new THREE.Scene();
-		const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-		const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-
-		renderer.setSize(window.innerWidth, window.innerHeight);
-		renderer.setPixelRatio(window.devicePixelRatio);
-		container.appendChild(renderer.domElement);
-
-		// Create particle system
-		const particleCount = 200;
-		const particles = new THREE.BufferGeometry();
-		const positions = new Float32Array(particleCount * 3);
-		const sizes = new Float32Array(particleCount);
-
-		for (let i = 0; i < particleCount; i++) {
-			positions[i * 3] = (Math.random() - 0.5) * 10;
-			positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
-			positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
-			sizes[i] = Math.random() * 0.05 + 0.01;
-		}
-
-		particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-		particles.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-
-		// Create shader material
-		const particleMaterial = new THREE.ShaderMaterial({
-			vertexShader: `
-				attribute float size;
-				void main() {
-					vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-					gl_PointSize = size * (300.0 / -mvPosition.z);
-					gl_Position = projectionMatrix * mvPosition;
-				}
-			`,
-			fragmentShader: `
-				void main() {
-					float distance = distance(gl_PointCoord, vec2(0.5, 0.5));
-					if (distance > 0.5) discard;
-					gl_FragColor = vec4(1.0, 1.0, 1.0, 0.5);
-				}
-			`,
-			transparent: true,
-			depthWrite: false,
-			blending: THREE.AdditiveBlending
 		});
 
-		// Create points
-		const particleSystem = new THREE.Points(particles, particleMaterial);
-		scene.add(particleSystem);
+		// Enhance links with cursor effect
+		const enhanceLinks = () => {
+			const links = document.querySelectorAll('a[href^="/"]');
+			links.forEach((link) => {
+				link.addEventListener('mouseenter', () => {
+					if (cursorFollow) {
+						gsap.to(cursorFollow, {
+							scale: 2,
+							opacity: 0.8,
+							duration: 0.2
+						});
+					}
+				});
 
-		// Position camera
-		camera.position.z = 5;
-
-		// Mouse movement
-		let mouseX = 0;
-		let mouseY = 0;
-		let targetMouseX = 0;
-		let targetMouseY = 0;
-
-		document.addEventListener('mousemove', (event) => {
-			mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-			mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-		});
-
-		// Animation loop
-		const animate = () => {
-			requestAnimationFrame(animate);
-
-			// Smooth mouse movement
-			targetMouseX += (mouseX - targetMouseX) * 0.05;
-			targetMouseY += (mouseY - targetMouseY) * 0.05;
-
-			// Rotate particle system based on mouse position
-			particleSystem.rotation.x += 0.001;
-			particleSystem.rotation.y += 0.002;
-
-			// Add subtle movement to camera
-			camera.position.x += (targetMouseX * 0.5 - camera.position.x) * 0.01;
-			camera.position.y += (targetMouseY * 0.5 - camera.position.y) * 0.01;
-			camera.lookAt(scene.position);
-
-			renderer.render(scene, camera);
+				link.addEventListener('mouseleave', () => {
+					if (cursorFollow) {
+						gsap.to(cursorFollow, {
+							scale: 1,
+							opacity: 0.5,
+							duration: 0.2
+						});
+					}
+				});
+			});
 		};
 
-		// Handle window resize
-		const handleResize = () => {
-			camera.aspect = window.innerWidth / window.innerHeight;
-			camera.updateProjectionMatrix();
-			renderer.setSize(window.innerWidth, window.innerHeight);
+		enhanceLinks();
+		document.addEventListener('astro:page-load', enhanceLinks);
+	};
+
+	// Initialize renderer
+	const setupRenderer = () => {
+		const container = document.getElementById('webgl-container');
+		if (!container) return;
+
+		// Dispose previous renderer if it exists (on page transitions)
+		if (renderer) {
+			renderer.dispose();
+		}
+
+		// Initialize the progressive renderer
+		renderer = new ProgressiveRenderer({
+			container,
+			particleCount: 200,
+			onRenderingModeChange: (mode) => {
+				// Dispatch event to notify components about rendering mode
+				window.dispatchEvent(new CustomEvent('renderingModeChange', {
+					detail: { mode }
+				}));
+			}
+		});
+
+		// Set up theme-aware styling for the WebGL canvas
+		const applyThemeToCanvas = (theme: string) => {
+			const canvas = container.querySelector('canvas');
+			if (!canvas) return;
+
+			if (theme === 'light') {
+				// Light mode styling
+				canvas.style.opacity = '0.3';
+				canvas.style.filter = 'invert(1) hue-rotate(180deg)';
+				canvas.style.mixBlendMode = 'multiply';
+			} else {
+				// Dark mode styling
+				canvas.style.opacity = '1';
+				canvas.style.filter = 'none';
+				canvas.style.mixBlendMode = 'screen';
+			}
 		};
 
-		window.addEventListener('resize', handleResize);
-		animate();
-	}
+		// Apply theme changes
+		themeManager = ThemeManager.getInstance();
+		applyThemeToCanvas(themeManager.getCurrentEffectiveTheme());
 
-	// View transitions enhancement
-	document.addEventListener('astro:page-load', () => {
-		const links = document.querySelectorAll('a[href^="/"]');
-		links.forEach((link) => {
-			link.addEventListener('mouseenter', () => {
-				if (cursorFollow) {
-					gsap.to(cursorFollow, {
-						scale: 2,
-						opacity: 0.8,
-						duration: 0.3
-					});
-				}
-			});
-
-			link.addEventListener('mouseleave', () => {
-				if (cursorFollow) {
-					gsap.to(cursorFollow, {
-						scale: 1,
-						opacity: 0.5,
-						duration: 0.3
-					});
-				}
-			});
+		// Subscribe to theme changes
+		themeManager.subscribe((theme: string) => {
+			applyThemeToCanvas(theme);
 		});
-	});
+	};
+
+	// Setup on initial page load and after transitions
+	const setupPage = () => {
+		// Initialize theme manager on client side
+		if (!themeManager) {
+			themeManager = ThemeManager.getInstance();
+		}
+
+		setupCursor();
+		setupRenderer();
+	};
+
+	// Initialize on first page load
+	setupPage();
+
+	// Re-initialize after Astro view transitions
+	document.addEventListener('astro:page-load', setupPage);
 </script>
