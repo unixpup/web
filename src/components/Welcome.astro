@@ -1,210 +1,301 @@
 ---
-import astroLogo from '../assets/astro.svg';
-import background from '../assets/background.svg';
+// No imports needed for this minimalist approach
 ---
 
-<div id="container">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
-	<main>
-		<section id="hero">
-			<a href="https://astro.build"
-				><img src={astroLogo.src} width="115" height="48" alt="Astro Homepage" /></a
-			>
-			<h1>
-				To get started, open the <code><pre>src/pages</pre></code> directory in your project.
-			</h1>
-			<section id="links">
-				<a class="button" href="https://docs.astro.build">Read our docs</a>
-				<a href="https://astro.build/chat"
-					>Join our Discord <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"
-						><path
-							fill="currentColor"
-							d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"
-						></path></svg
-					>
-				</a>
-			</section>
-		</section>
-	</main>
+<div class="portfolio">
+  <header>
+    <h1>~/vermillionpaws</h1>
+  </header>
 
-	<a href="https://astro.build/blog/astro-5/" id="news" class="box">
-		<svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg"
-			><path
-				d="M24.667 12c1.333 1.414 2 3.192 2 5.334 0 4.62-4.934 5.7-7.334 12C18.444 28.567 18 27.456 18 26c0-4.642 6.667-7.053 6.667-14Zm-5.334-5.333c1.6 1.65 2.4 3.43 2.4 5.333 0 6.602-8.06 7.59-6.4 17.334C13.111 27.787 12 25.564 12 22.666c0-4.434 7.333-8 7.333-16Zm-6-5.333C15.111 3.555 16 5.556 16 7.333c0 8.333-11.333 10.962-5.333 22-3.488-.774-6-4-6-8 0-8.667 8.666-10 8.666-20Z"
-				fill="#111827"></path></svg
-		>
-		<h2>What's New in Astro 5.0?</h2>
-		<p>
-			From content layers to server islands, click to learn more about the new features and
-			improvements in Astro 5.0
-		</p>
-	</a>
+  <nav>
+    <ul>
+      <li><a href="#about">about</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="about">
+      <h2>about/</h2>
+      <p>
+        Hello, I'm a programmer focused on creating efficient and minimalist solutions.
+        I believe in software that respects both functionality and aesthetics.
+      </p>
+
+      <h3>Skills</h3>
+      <ul class="skills-list">
+        <li>Web development with Astro</li>
+        <li>Neovim configuration and customization</li>
+        <li>Lua scripting</li>
+        <li>Minimalist UI/UX design</li>
+        <li>Development workflow optimization</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>projects/</h2>
+      <ul class="project-list">
+        <li>
+          <h3><a href="https://github.com/vermillionpaws/web">web</a></h3>
+          <p>Personal website built with Astro focusing on minimalist design principles.</p>
+          <code>tech: astro, javascript</code>
+        </li>
+        <li>
+          <h3><a href="https://github.com/vermillionpaws/nvim">nvim</a></h3>
+          <p>Custom Neovim configuration with extensive plugin integration for enhanced development workflow.</p>
+          <code>tech: lua</code>
+        </li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>contact/</h2>
+      <ul class="contact-list">
+        <li><a href="https://github.com/vermillionpaws">GitHub</a></li>
+        <li><a href="https://fault.wtf/">Website</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>built with love • last updated: <time datetime="2025-04-05">2025-04-05</time></p>
+  </footer>
 </div>
 
 <style>
-	#background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		filter: blur(100px);
-	}
+  /* Import Recursive font */
+  @import url('https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..800,0..1,0..1,0..1&display=swap');
 
-	#container {
-		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		height: 100%;
-	}
+  /* CSS Variables for font settings */
+  :root {
+    --font-casual: 0;        /* CASL: 0 = linear, 1 = casual */
+    --font-weight: 400;      /* Weight: 300-800 */
+    --font-slant: 0deg;      /* Slant: 0 to -15 degrees */
+    --font-mono: 1;          /* MONO: 0 = normal, 1 = monospace */
+    --font-cursive: 0;       /* CRSV: 0 = normal, 1 = cursive */
+    --bg-color: #EEEEEE;
+    --text-color: #222222;
+    --accent-color: #555555;
+    --link-color: #0000EE;
+    --link-visited: #551A8B;
+    --border-color: #222222;
+    --max-width: 650px;
+  }
 
-	main {
-		height: 100%;
-		display: flex;
-		justify-content: center;
-	}
+  /* Global styles */
+  .portfolio {
+    font-family: 'Recursive', sans-serif;
+    font-variation-settings:
+      'CASL' var(--font-casual),
+      'wght' var(--font-weight),
+      'slnt' var(--font-slant),
+      'MONO' var(--font-mono),
+      'CRSV' var(--font-cursive);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    padding: 1rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
 
-	#hero {
-		display: flex;
-		align-items: start;
-		flex-direction: column;
-		justify-content: center;
-		padding: 16px;
-	}
+  /* Header styles */
+  header h1 {
+    font-variation-settings:
+      'MONO' 1,
+      'wght' 700;
+    margin: 0;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+  }
 
-	h1 {
-		font-size: 22px;
-		margin-top: 0.25em;
-	}
+  /* Navigation */
+  nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 1.5rem;
+    margin: 1rem 0;
+  }
 
-	#links {
-		display: flex;
-		gap: 16px;
-	}
+  nav a {
+    font-variation-settings:
+      'MONO' 1,
+      'wght' 500;
+    text-decoration: none;
+    color: var(--link-color);
+  }
 
-	#links a {
-		display: flex;
-		align-items: center;
-		padding: 10px 12px;
-		color: #111827;
-		text-decoration: none;
-		transition: color 0.2s;
-	}
+  nav a:hover {
+    text-decoration: underline;
+  }
 
-	#links a:hover {
-		color: rgb(78, 80, 86);
-	}
+  /* Section styling */
+  section {
+    margin-bottom: 2rem;
+  }
 
-	#links a svg {
-		height: 1em;
-		margin-left: 8px;
-	}
+  h2 {
+    font-variation-settings:
+      'MONO' 1,
+      'wght' 600;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.25rem;
+  }
 
-	#links a.button {
-		color: white;
-		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
-		box-shadow:
-			inset 0 0 0 1px rgba(255, 255, 255, 0.12),
-			inset 0 -2px 0 rgba(0, 0, 0, 0.24);
-		border-radius: 10px;
-	}
+  /* Project list styling */
+  .project-list {
+    list-style: none;
+    padding: 0;
+  }
 
-	#links a.button:hover {
-		color: rgb(230, 230, 230);
-		box-shadow: none;
-	}
+  .project-list li {
+    margin-bottom: 1.5rem;
+    border-left: 3px solid var(--accent-color);
+    padding-left: 1rem;
+  }
 
-	pre {
-		font-family:
-			ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono',
-			monospace;
-		font-weight: normal;
-		background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		margin: 0;
-	}
+  .project-list h3 {
+    margin: 0 0 0.5rem 0;
+    font-variation-settings: 'MONO' 1, 'wght' 600;
+  }
 
-	h2 {
-		margin: 0 0 1em;
-		font-weight: normal;
-		color: #111827;
-		font-size: 20px;
-	}
+  .project-list p {
+    margin: 0.5rem 0;
+  }
 
-	p {
-		color: #4b5563;
-		font-size: 16px;
-		line-height: 24px;
-		letter-spacing: -0.006em;
-		margin: 0;
-	}
+  /* Links styling */
+  a {
+    color: var(--link-color);
+    text-decoration: none;
+  }
 
-	code {
-		display: inline-block;
-		background:
-			linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
-			linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
-		border-radius: 8px;
-		border: 1px solid transparent;
-		padding: 6px 8px;
-	}
+  a:visited {
+    color: var(--link-visited);
+  }
 
-	.box {
-		padding: 16px;
-		background: rgba(255, 255, 255, 1);
-		border-radius: 16px;
-		border: 1px solid white;
-	}
+  a:hover {
+    text-decoration: underline;
+  }
 
-	#news {
-		position: absolute;
-		bottom: 16px;
-		right: 16px;
-		max-width: 300px;
-		text-decoration: none;
-		transition: background 0.2s;
-		backdrop-filter: blur(50px);
-	}
+  /* Skills list styling */
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-left: 0;
+    list-style-position: inside;
+  }
 
-	#news:hover {
-		background: rgba(255, 255, 255, 0.55);
-	}
+  .skills-list li {
+    background: rgba(0,0,0,0.05);
+    padding: 0.35rem 0.75rem;
+    border-radius: 3px;
+    display: inline-block;
+  }
 
-	@media screen and (max-height: 368px) {
-		#news {
-			display: none;
-		}
-	}
+  /* Contact list styling */
+  .contact-list {
+    display: flex;
+    gap: 1rem;
+    padding-left: 0;
+    list-style: none;
+  }
 
-	@media screen and (max-width: 768px) {
-		#container {
-			display: flex;
-			flex-direction: column;
-		}
+  .contact-list li {
+    background: rgba(0,0,0,0.05);
+    padding: 0.5rem 1rem;
+    border-radius: 3px;
+  }
 
-		#hero {
-			display: block;
-			padding-top: 10%;
-		}
+  /* Terminal style boxes */
+  .box {
+    background: #111;
+    color: #DDD;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    white-space: pre-wrap;
+    overflow-x: auto;
+    font-variation-settings: 'MONO' 1, 'wght' 400;
+  }
 
-		#links {
-			flex-wrap: wrap;
-		}
+  .box a {
+    color: #88AAFF;
+  }
 
-		#links a.button {
-			padding: 14px 18px;
-		}
+  .box a:visited {
+    color: #CC88FF;
+  }
 
-		#news {
-			right: 16px;
-			left: 16px;
-			bottom: 2.5rem;
-			max-width: 100%;
-		}
+  .cmd {
+    color: #AAFFAA;
+    font-variation-settings: 'MONO' 1, 'wght' 500;
+  }
 
-		h1 {
-			line-height: 1.5;
-		}
-	}
+  /* Code styling */
+  code {
+    font-variation-settings: 'MONO' 1, 'wght' 400;
+    background: rgba(0,0,0,0.05);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+  }
+
+  /* Footer styling */
+  footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .mono {
+    font-variation-settings: 'MONO' 1;
+  }
+
+  /* Media queries for responsive design */
+  @media (max-width: 600px) {
+    :root {
+      --font-weight: 450; /* Slightly increase weight on smaller screens */
+    }
+
+    nav ul {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .portfolio {
+      padding: 0.75rem;
+    }
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-color: #222222;
+      --text-color: #EEEEEE;
+      --accent-color: #AAAAAA;
+      --link-color: #88AAFF;
+      --link-visited: #CC88FF;
+      --border-color: #555555;
+    }
+
+    .box {
+      background: #000;
+      border-color: #444;
+    }
+
+    code {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .skills-list li {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .contact-list li {
+      background: rgba(255,255,255,0.1);
+    }
+  }
 </style>
