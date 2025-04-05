@@ -1,0 +1,117 @@
+---
+// Definition for active link utility
+const { pathname } = Astro.url;
+const isActive = (path: string) => pathname === path || pathname.startsWith(path);
+---
+
+<header class="fixed w-full top-0 z-40 bg-opacity-80 backdrop-blur-md bg-neutral-900/30 border-b border-white/5">
+  <div class="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+    <a href="/" class="text-xl font-medium perspective-text">
+      <span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">/</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">~</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">/</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">v</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">e</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">r</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">m</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">i</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">l</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">l</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">i</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">o</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">n</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">p</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">a</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">w</span><span class="inline-block transition-transform hover:translate-y-[-2px] duration-300">s</span>
+    </a>
+
+    <nav class="hidden md:block">
+      <ul class="flex items-center space-x-8">
+        <li>
+          <a href="/" class={`nav-link text-sm font-medium transition-colors ${isActive('/') && !isActive('/about') && !isActive('/projects') && !isActive('/contact') ? 'active' : ''}`}>
+            home
+          </a>
+        </li>
+        <li>
+          <a href="/about/" class={`nav-link text-sm font-medium transition-colors ${isActive('/about') ? 'active' : ''}`}>
+            about
+          </a>
+        </li>
+        <li>
+          <a href="/projects/" class={`nav-link text-sm font-medium transition-colors ${isActive('/projects') ? 'active' : ''}`}>
+            projects
+          </a>
+        </li>
+        <li>
+          <a href="/contact/" class={`nav-link text-sm font-medium transition-colors ${isActive('/contact') ? 'active' : ''}`}>
+            contact
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <button id="menuButton" class="md:hidden flex flex-col space-y-1.5 p-2" aria-label="Menu">
+      <span class="w-6 h-0.5 bg-white block transition-transform"></span>
+      <span class="w-6 h-0.5 bg-white block transition-opacity"></span>
+      <span class="w-6 h-0.5 bg-white block transition-transform"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="fixed inset-0 bg-neutral-900/95 backdrop-blur-lg z-50 flex flex-col items-center justify-center transform translate-x-full transition-transform duration-300 ease-in-out">
+    <button id="closeMenuButton" class="absolute top-4 right-4 p-2" aria-label="Close menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <nav>
+      <ul class="flex flex-col space-y-8 items-center text-center">
+        <li>
+          <a href="/" class="text-2xl font-medium hover:text-white transition-colors">
+            home
+          </a>
+        </li>
+        <li>
+          <a href="/about/" class="text-2xl font-medium hover:text-white transition-colors">
+            about
+          </a>
+        </li>
+        <li>
+          <a href="/projects/" class="text-2xl font-medium hover:text-white transition-colors">
+            projects
+          </a>
+        </li>
+        <li>
+          <a href="/contact/" class="text-2xl font-medium hover:text-white transition-colors">
+            contact
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Mobile menu functionality
+  const menuButton = document.getElementById('menuButton');
+  const closeMenuButton = document.getElementById('closeMenuButton');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (menuButton && closeMenuButton && mobileMenu) {
+    menuButton.addEventListener('click', () => {
+      mobileMenu.classList.remove('translate-x-full');
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.add('translate-x-full');
+      document.body.style.overflow = '';
+    });
+  }
+
+  // Re-initialize after Astro view transitions
+  document.addEventListener('astro:page-load', () => {
+    const menuButton = document.getElementById('menuButton');
+    const closeMenuButton = document.getElementById('closeMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (menuButton && closeMenuButton && mobileMenu) {
+      menuButton.addEventListener('click', () => {
+        mobileMenu.classList.remove('translate-x-full');
+        document.body.style.overflow = 'hidden';
+      });
+
+      closeMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+</script>

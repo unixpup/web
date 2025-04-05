@@ -1,4 +1,7 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
+import '../styles/global.css';
+
 export interface Props {
 	title: string;
 	description?: string;
@@ -16,23 +19,158 @@ const { title, description = "Personal website of vermillionpaws - programmer an
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ViewTransitions />
+		<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
 	</head>
-	<body class="min-h-screen">
-		<slot />
+	<body class="min-h-screen bg-neutral-950 text-neutral-200">
+		<div id="webgl-container" class="fixed inset-0 z-0 pointer-events-none"></div>
+		<div id="cursor-follow" class="fixed w-6 h-6 rounded-full pointer-events-none z-50 transition-transform duration-100 ease-out mix-blend-difference bg-white opacity-50"></div>
+		<div class="relative z-10">
+			<slot />
+		</div>
 	</body>
 </html>
-<style is:global>
-	html {
-		font-family: system-ui, sans-serif;
+
+<script>
+	import * as THREE from 'three';
+	import { gsap } from 'gsap';
+
+	// Custom cursor follow
+	const cursorFollow = document.getElementById('cursor-follow');
+
+	document.addEventListener('mousemove', (e) => {
+		if (cursorFollow) {
+			gsap.to(cursorFollow, {
+				x: e.clientX - 12,
+				y: e.clientY - 12,
+				duration: 0.2,
+				ease: 'power2.out'
+			});
+		}
+	});
+
+	// Initialize WebGL scene
+	const container = document.getElementById('webgl-container');
+	if (container) {
+		// Scene setup
+		const scene = new THREE.Scene();
+		const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+		const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+
+		renderer.setSize(window.innerWidth, window.innerHeight);
+		renderer.setPixelRatio(window.devicePixelRatio);
+		container.appendChild(renderer.domElement);
+
+		// Create particle system
+		const particleCount = 200;
+		const particles = new THREE.BufferGeometry();
+		const positions = new Float32Array(particleCount * 3);
+		const sizes = new Float32Array(particleCount);
+
+		for (let i = 0; i < particleCount; i++) {
+			positions[i * 3] = (Math.random() - 0.5) * 10;
+			positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
+			positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
+			sizes[i] = Math.random() * 0.05 + 0.01;
+		}
+
+		particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+		particles.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+		// Create shader material
+		const particleMaterial = new THREE.ShaderMaterial({
+			vertexShader: `
+				attribute float size;
+				void main() {
+					vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+					gl_PointSize = size * (300.0 / -mvPosition.z);
+					gl_Position = projectionMatrix * mvPosition;
+				}
+			`,
+			fragmentShader: `
+				void main() {
+					float distance = distance(gl_PointCoord, vec2(0.5, 0.5));
+					if (distance > 0.5) discard;
+					gl_FragColor = vec4(1.0, 1.0, 1.0, 0.5);
+				}
+			`,
+			transparent: true,
+			depthWrite: false,
+			blending: THREE.AdditiveBlending
+		});
+
+		// Create points
+		const particleSystem = new THREE.Points(particles, particleMaterial);
+		scene.add(particleSystem);
+
+		// Position camera
+		camera.position.z = 5;
+
+		// Mouse movement
+		let mouseX = 0;
+		let mouseY = 0;
+		let targetMouseX = 0;
+		let targetMouseY = 0;
+
+		document.addEventListener('mousemove', (event) => {
+			mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+			mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+		});
+
+		// Animation loop
+		const animate = () => {
+			requestAnimationFrame(animate);
+
+			// Smooth mouse movement
+			targetMouseX += (mouseX - targetMouseX) * 0.05;
+			targetMouseY += (mouseY - targetMouseY) * 0.05;
+
+			// Rotate particle system based on mouse position
+			particleSystem.rotation.x += 0.001;
+			particleSystem.rotation.y += 0.002;
+
+			// Add subtle movement to camera
+			camera.position.x += (targetMouseX * 0.5 - camera.position.x) * 0.01;
+			camera.position.y += (targetMouseY * 0.5 - camera.position.y) * 0.01;
+			camera.lookAt(scene.position);
+
+			renderer.render(scene, camera);
+		};
+
+		// Handle window resize
+		const handleResize = () => {
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
+			renderer.setSize(window.innerWidth, window.innerHeight);
+		};
+
+		window.addEventListener('resize', handleResize);
+		animate();
 	}
 
-	body {
-		margin: 0;
-		padding: 0;
-	}
+	// View transitions enhancement
+	document.addEventListener('astro:page-load', () => {
+		const links = document.querySelectorAll('a[href^="/"]');
+		links.forEach((link) => {
+			link.addEventListener('mouseenter', () => {
+				if (cursorFollow) {
+					gsap.to(cursorFollow, {
+						scale: 2,
+						opacity: 0.8,
+						duration: 0.3
+					});
+				}
+			});
 
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-</style>
+			link.addEventListener('mouseleave', () => {
+				if (cursorFollow) {
+					gsap.to(cursorFollow, {
+						scale: 1,
+						opacity: 0.5,
+						duration: 0.3
+					});
+				}
+			});
+		});
+	});
+</script>

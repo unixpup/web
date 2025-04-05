@@ -1,0 +1,250 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Navigation from '@components/Navigation.astro';
+import Footer from '@components/Footer.astro';
+import { fade } from 'astro:transitions';
+
+// Define page metadata with types
+const pageTitle: string = "Projects | vermillionpaws";
+
+// Project data
+const projects = [
+  {
+    title: "web",
+    description: "Personal website built with Astro focusing on minimalist design principles and WebGL animations.",
+    image: "/project-web.jpg",
+    tags: ["astro", "typescript", "three.js", "webgl"],
+    link: "https://github.com/vermillionpaws/web",
+    featured: true
+  },
+  {
+    title: "nvim",
+    description: "Custom Neovim configuration with extensive plugin integration for enhanced development workflow.",
+    image: "/project-nvim.jpg",
+    tags: ["lua", "neovim", "vim-script"],
+    link: "https://github.com/vermillionpaws/nvim",
+    featured: true
+  },
+  {
+    title: "vscode-theme",
+    description: "A minimalist dark theme for Visual Studio Code with carefully selected colors for optimal readability.",
+    image: "/project-theme.jpg",
+    tags: ["vscode", "theme", "json"],
+    link: "#",
+    featured: false
+  },
+  {
+    title: "dotfiles",
+    description: "Configuration files for Linux environment, including terminal setups and productivity tools.",
+    image: "/project-dotfiles.jpg",
+    tags: ["bash", "linux", "configuration"],
+    link: "#",
+    featured: false
+  }
+];
+---
+
+<Layout title={pageTitle}>
+  <Navigation />
+
+  <main class="min-h-screen pt-24 pb-20">
+    <div class="container max-w-5xl mx-auto px-4 md:px-6">
+      <div transition:animate={fade({ duration: '0.4s' })}>
+        <div class="mb-12">
+          <h1 class="text-3xl md:text-4xl font-bold text-white mb-6 flex items-center">
+            <span class="text-neutral-500">~/</span>projects
+          </h1>
+
+          <div class="h-1 w-24 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+        </div>
+
+        <!-- Project filters -->
+        <div class="mb-10">
+          <div class="flex flex-wrap items-center gap-3">
+            <button class="filter-btn active px-4 py-2 rounded-full text-sm bg-white/10 hover:bg-white/20 transition-all" data-filter="all">
+              All
+            </button>
+            <button class="filter-btn px-4 py-2 rounded-full text-sm bg-white/5 hover:bg-white/20 transition-all" data-filter="astro">
+              Astro
+            </button>
+            <button class="filter-btn px-4 py-2 rounded-full text-sm bg-white/5 hover:bg-white/20 transition-all" data-filter="lua">
+              Lua
+            </button>
+            <button class="filter-btn px-4 py-2 rounded-full text-sm bg-white/5 hover:bg-white/20 transition-all" data-filter="featured">
+              Featured
+            </button>
+          </div>
+        </div>
+
+        <!-- Featured Projects -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10 mb-16">
+          {projects.filter(p => p.featured).map((project, index) => (
+            <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-card featured-project group" data-tags={project.tags.join(' ')} data-featured={project.featured.toString()}>
+              <div class="relative overflow-hidden rounded-lg aspect-video bg-neutral-900">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-600/20 opacity-50 group-hover:opacity-70 transition-opacity"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-6">
+                  <h3 class="text-2xl font-bold mb-2 text-white group-hover:translate-x-2 transition-transform">{project.title}</h3>
+                  <p class="text-sm text-neutral-300 mb-4 max-w-md">{project.description}</p>
+                  <div class="flex flex-wrap gap-2">
+                    {project.tags.map(tag => (
+                      <span class="px-2 py-1 bg-black/30 backdrop-blur-sm text-xs rounded">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <!-- All Projects -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 project-grid">
+          {projects.map((project) => (
+            <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-card group" data-tags={project.tags.join(' ')} data-featured={project.featured.toString()}>
+              <div class="bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-lg overflow-hidden h-full transition-all hover:border-white/20">
+                <div class="p-6">
+                  <h3 class="text-xl font-bold mb-2 text-white group-hover:text-blue-400 transition-colors">{project.title}</h3>
+                  <p class="text-sm text-neutral-400 mb-4 line-clamp-3">{project.description}</p>
+                  <div class="flex flex-wrap gap-2 mt-4">
+                    {project.tags.map(tag => (
+                      <span class="px-2 py-1 bg-white/5 text-xs rounded">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+                <div class="px-6 py-4 border-t border-white/5 flex justify-between items-center">
+                  <span class="text-xs text-neutral-500">View project</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-neutral-500 group-hover:text-white group-hover:translate-x-1 transition-all">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  // Project filtering
+  document.addEventListener('astro:page-load', () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    // Handle filter button clicks
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active button
+        filterBtns.forEach(b => b.classList.remove('active', 'bg-white/10'));
+        filterBtns.forEach(b => b.classList.add('bg-white/5'));
+        btn.classList.add('active', 'bg-white/10');
+        btn.classList.remove('bg-white/5');
+
+        const filter = btn.getAttribute('data-filter');
+
+        // Filter projects
+        projectCards.forEach(card => {
+          if (filter === 'all') {
+            card.style.display = 'block';
+            // Add animation
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, 50);
+          } else if (filter === 'featured') {
+            if (card.getAttribute('data-featured') === 'true') {
+              card.style.display = 'block';
+              // Add animation
+              setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, 50);
+            } else {
+              // Hide with animation
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                card.style.display = 'none';
+              }, 300);
+            }
+          } else {
+            const tags = card.getAttribute('data-tags').split(' ');
+            if (tags.includes(filter)) {
+              card.style.display = 'block';
+              // Add animation
+              setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, 50);
+            } else {
+              // Hide with animation
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                card.style.display = 'none';
+              }, 300);
+            }
+          }
+        });
+      });
+    });
+
+    // Set initial animation state
+    projectCards.forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.3s ease, transform 0.5s ease';
+
+      // Stagger the animations
+      setTimeout(() => {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }, 100 + (index * 50));
+    });
+  });
+
+  // WebGL hover effects
+  document.addEventListener('astro:page-load', () => {
+    const featuredProjects = document.querySelectorAll('.featured-project');
+
+    featuredProjects.forEach(project => {
+      project.addEventListener('mouseenter', () => {
+        // Additional WebGL interactions could be added here
+        project.querySelector('h3').style.transform = 'translateX(10px)';
+      });
+
+      project.addEventListener('mouseleave', () => {
+        project.querySelector('h3').style.transform = 'translateX(0)';
+      });
+    });
+  });
+</script>
+
+<style>
+  .filter-btn.active {
+    position: relative;
+  }
+
+  .filter-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+    border-radius: 2px;
+  }
+
+  .project-card {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+  }
+</style>

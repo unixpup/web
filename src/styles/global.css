@@ -1,52 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "tailwindcss";
 
 /* Tokyo Night color scheme */
 
-@layer base {
-  :root {
-    --background: theme('colors.tokyo.bg');
-    --foreground: theme('colors.tokyo.fg');
+:root {
+  --background: theme('colors.tokyo.bg');
+  --foreground: theme('colors.tokyo.fg');
 
-    --card: theme('colors.tokyo.bg-highlight');
-    --card-foreground: theme('colors.tokyo.fg');
+  --card: theme('colors.tokyo.bg-highlight');
+  --card-foreground: theme('colors.tokyo.fg');
 
-    --popover: theme('colors.tokyo.bg');
-    --popover-foreground: theme('colors.tokyo.fg');
+  --popover: theme('colors.tokyo.bg');
+  --popover-foreground: theme('colors.tokyo.fg');
 
-    --primary: theme('colors.tokyo.blue');
-    --primary-foreground: theme('colors.tokyo.bg');
+  --primary: theme('colors.tokyo.blue');
+  --primary-foreground: theme('colors.tokyo.bg');
 
-    --secondary: theme('colors.tokyo.purple');
-    --secondary-foreground: theme('colors.tokyo.fg');
+  --secondary: theme('colors.tokyo.purple');
+  --secondary-foreground: theme('colors.tokyo.fg');
 
-    --muted: theme('colors.tokyo.terminal-black');
-    --muted-foreground: theme('colors.tokyo.fg-dark');
+  --muted: theme('colors.tokyo.terminal-black');
+  --muted-foreground: theme('colors.tokyo.fg-dark');
 
-    --accent: theme('colors.tokyo.cyan');
-    --accent-foreground: theme('colors.tokyo.bg');
+  --accent: theme('colors.tokyo.cyan');
+  --accent-foreground: theme('colors.tokyo.bg');
 
-    --destructive: theme('colors.tokyo.red');
-    --destructive-foreground: theme('colors.tokyo.fg');
+  --destructive: theme('colors.tokyo.red');
+  --destructive-foreground: theme('colors.tokyo.fg');
 
-    --border: theme('colors.tokyo.terminal-black');
-    --input: theme('colors.tokyo.terminal-black');
-    --ring: theme('colors.tokyo.purple');
+  --border: theme('colors.tokyo.terminal-black');
+  --input: theme('colors.tokyo.terminal-black');
+  --ring: theme('colors.tokyo.purple');
+
+  --cursor-size: 24px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Satoshi', sans-serif;
+  background-color: #0a0a0a;
+  color: #f1f1f1;
+  overflow-x: hidden;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  @apply bg-tokyo-bg text-tokyo-fg;
+}
+
+/* Custom cursor style */
+html {
+  cursor: none;
+}
+
+/* Make cursor visible on mobile/touch devices */
+@media (pointer: coarse) {
+  html {
+    cursor: auto;
+  }
+  #cursor-follow {
+    display: none;
   }
 }
 
+/* Heading styles */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  @apply text-tokyo-blue;
+}
+
+/* Link hover effects */
+a {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  cursor: none;
+  transition: opacity 0.2s ease;
+  @apply text-tokyo-cyan hover:text-tokyo-blue transition-colors;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* Container styles */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Modern button style */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Navigation */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Card style */
+.card {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Section spacing */
+section {
+  padding: 5rem 0;
+}
+
+/* Grid layouts */
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 768px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Perspective text effect */
+.perspective-text {
+  perspective: 1000px;
+}
+
+.perspective-text span {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.perspective-text:hover span {
+  transform: translateY(-2px) rotateX(10deg);
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* View transitions animation */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.5s;
+}
+
 @layer base {
-  body {
-    @apply bg-tokyo-bg text-tokyo-fg;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply text-tokyo-blue;
-  }
-
-  a {
-    @apply text-tokyo-cyan hover:text-tokyo-blue transition-colors;
-  }
-
   code {
     @apply bg-tokyo-bg-highlight text-tokyo-green px-1.5 py-0.5 rounded;
   }

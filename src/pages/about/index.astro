@@ -1,0 +1,219 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Navigation from '@components/Navigation.astro';
+import Footer from '@components/Footer.astro';
+
+// Define page metadata with types
+const pageTitle: string = "About | vermillionpaws";
+---
+
+<Layout title={pageTitle}>
+  <Navigation />
+
+  <main class="min-h-screen pt-24 pb-20">
+    <div class="container max-w-4xl mx-auto px-4 md:px-6">
+      <div class="animate-fade-in animate-slide-up">
+        <div class="mb-12">
+          <h1 class="text-3xl md:text-4xl font-bold text-white mb-6 flex items-center">
+            <span class="text-neutral-500">~/</span>about
+          </h1>
+
+          <div class="h-1 w-24 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+        </div>
+
+        <!-- About me section -->
+        <div class="mb-16">
+          <div class="prose prose-invert max-w-none">
+            <p class="text-lg md:text-xl mb-6 text-neutral-300">
+              Hello, I'm a programmer focused on creating efficient and minimalist solutions.
+              I believe in software that respects both functionality and aesthetics.
+            </p>
+
+            <p class="mb-6 text-neutral-400">
+              My journey as a developer began with a fascination for clean design and efficient functionality. I've always been drawn to the intersection of technology and creativity, seeking ways to build software that not only works flawlessly but also provides an intuitive and pleasant user experience.
+            </p>
+
+            <p class="mb-6 text-neutral-400">
+              I specialize in modern web development with a focus on performance, accessibility, and minimalist design. While I'm passionate about pushing the boundaries of what's possible on the web, I maintain a strong commitment to core principles like readability, maintainability, and user-centric design.
+            </p>
+
+            <p class="mb-6 text-neutral-400">
+              When I'm not coding, you might find me exploring the latest design trends, contributing to open-source projects, or optimizing my development environment for peak efficiency.
+            </p>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold mb-6 text-white">Experience Timeline</h2>
+
+          <div class="space-y-10">
+            <!-- Timeline item -->
+            <div class="relative pl-8 border-l border-neutral-800">
+              <div class="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full border border-blue-500 bg-neutral-900"></div>
+              <div>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                  <h3 class="text-lg font-semibold text-white">Senior Web Developer</h3>
+                  <span class="text-sm text-neutral-500">2022 - Present</span>
+                </div>
+                <p class="text-neutral-400 mb-2">Leading development for minimalist web applications with a focus on performance and design.</p>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Astro</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">React</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">TypeScript</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Three.js</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline item -->
+            <div class="relative pl-8 border-l border-neutral-800">
+              <div class="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full border border-purple-500 bg-neutral-900"></div>
+              <div>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                  <h3 class="text-lg font-semibold text-white">Neovim Plugin Developer</h3>
+                  <span class="text-sm text-neutral-500">2020 - Present</span>
+                </div>
+                <p class="text-neutral-400 mb-2">Creating and maintaining custom plugins for Neovim to enhance developer productivity.</p>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Lua</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Neovim API</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Vim Script</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline item -->
+            <div class="relative pl-8 border-l border-neutral-800">
+              <div class="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full border border-green-500 bg-neutral-900"></div>
+              <div>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                  <h3 class="text-lg font-semibold text-white">Frontend Developer</h3>
+                  <span class="text-sm text-neutral-500">2019 - 2022</span>
+                </div>
+                <p class="text-neutral-400 mb-2">Developed responsive web applications with a focus on performance and user experience.</p>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">JavaScript</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">CSS</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">HTML</span>
+                  <span class="px-2 py-1 bg-white/5 text-xs rounded">Vue.js</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills section -->
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold mb-6 text-white">Skills & Expertise</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div>
+              <h3 class="text-lg font-semibold text-white mb-4">Languages</h3>
+              <div class="space-y-3">
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-neutral-300">TypeScript</span>
+                    <span class="text-xs text-neutral-500">90%</span>
+                  </div>
+                  <div class="w-full bg-neutral-800 rounded-full h-1.5">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-700 h-1.5 rounded-full" style="width: 90%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-neutral-300">JavaScript</span>
+                    <span class="text-xs text-neutral-500">95%</span>
+                  </div>
+                  <div class="w-full bg-neutral-800 rounded-full h-1.5">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-700 h-1.5 rounded-full" style="width: 95%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-neutral-300">Lua</span>
+                    <span class="text-xs text-neutral-500">85%</span>
+                  </div>
+                  <div class="w-full bg-neutral-800 rounded-full h-1.5">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-700 h-1.5 rounded-full" style="width: 85%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold text-white mb-4">Frameworks & Tools</h3>
+              <div class="space-y-3">
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-neutral-300">Astro</span>
+                    <span class="text-xs text-neutral-500">95%</span>
+                  </div>
+                  <div class="w-full bg-neutral-800 rounded-full h-1.5">
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-700 h-1.5 rounded-full" style="width: 95%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-neutral-300">Neovim</span>
+                    <span class="text-xs text-neutral-500">90%</span>
+                  </div>
+                  <div class="w-full bg-neutral-800 rounded-full h-1.5">
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-700 h-1.5 rounded-full" style="width: 90%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-neutral-300">Three.js</span>
+                    <span class="text-xs text-neutral-500">80%</span>
+                  </div>
+                  <div class="w-full bg-neutral-800 rounded-full h-1.5">
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-700 h-1.5 rounded-full" style="width: 80%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Download resume / contact -->
+        <div class="flex flex-col sm:flex-row items-center gap-6 justify-center bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-lg p-8">
+          <a href="/contact" class="btn bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 rounded-md px-6 py-3 text-sm font-medium transition-all text-white w-full sm:w-auto text-center">
+            Get in touch
+          </a>
+          <a href="#" class="btn bg-white/5 hover:bg-white/10 border border-white/10 rounded-md px-6 py-3 text-sm font-medium transition-all w-full sm:w-auto text-center">
+            Download Resume
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  // Add scroll animation for timeline
+  document.addEventListener('astro:page-load', () => {
+    const timelineItems = document.querySelectorAll('.border-l > div');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in', 'animate-slide-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    timelineItems.forEach(item => {
+      observer.observe(item);
+      // Initially hide the items
+      item.classList.add('opacity-0');
+    });
+  });
+</script>
