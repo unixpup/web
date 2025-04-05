@@ -468,3 +468,55 @@ code, pre, kbd, samp, tt {
     font-size: 0.75rem;
   }
 }
+
+/* i18n Font Support for CJK Languages */
+.font-japanese {
+  --font-body: 'Noto Sans JP', 'Satoshi', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-feature-settings: "palt" 1; /* Proportional alternate character spacing */
+  text-align-last: auto;
+}
+
+.font-chinese {
+  --font-body: 'Noto Sans SC', 'Satoshi', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-feature-settings: "trad" 0;
+  text-align-last: auto;
+}
+
+.font-korean {
+  --font-body: 'Noto Sans KR', 'Satoshi', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-feature-settings: "kern" 1;
+  text-align-last: auto;
+}
+
+/* Improved typographic support for CJK languages */
+:lang(ja) q,
+:lang(zh) q {
+  quotes: "「" "」" "『" "』";
+}
+
+:lang(ko) q {
+  quotes: "'" "'" """ """;
+}
+
+/* CJK text justification and line breaking */
+:lang(ja), :lang(zh), :lang(ko) {
+  line-break: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+/* Adjust spacing for CJK languages */
+:lang(ja) p, :lang(zh) p, :lang(ko) p {
+  text-align: justify;
+  text-justify: inter-character;
+}
+
+/* Proper font rendering for numbers in CJK context */
+:lang(ja) .text-numeric,
+:lang(zh) .text-numeric,
+:lang(ko) .text-numeric {
+  font-variant-numeric: lining-nums proportional-nums;
+}

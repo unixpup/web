@@ -1,7 +1,13 @@
 ---
+import { useI18n } from "astro-i18n";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+
 // Definition for active link utility
 const { pathname } = Astro.url;
 const isActive = (path: string) => pathname === path || pathname.startsWith(path);
+
+// Get translations
+const { t } = useI18n();
 ---
 
 <header class="fixed w-full top-0 z-40 backdrop-blur-md border-b border-white/5 transition-colors duration-300">
@@ -15,40 +21,46 @@ const isActive = (path: string) => pathname === path || pathname.startsWith(path
         <ul class="flex items-center space-x-8">
           <li>
             <a href="/" class={`nav-link text-sm font-medium transition-colors ${isActive('/') && !isActive('/about') && !isActive('/projects') && !isActive('/contact') && !isActive('/devblog') ? 'active' : ''}`}>
-              home
+              {t('nav.home')}
             </a>
           </li>
           <li>
             <a href="/about/" class={`nav-link text-sm font-medium transition-colors ${isActive('/about') ? 'active' : ''}`}>
-              about
+              {t('nav.about')}
             </a>
           </li>
           <li>
             <a href="/projects/" class={`nav-link text-sm font-medium transition-colors ${isActive('/projects') ? 'active' : ''}`}>
-              projects
+              {t('nav.projects')}
             </a>
           </li>
           <li>
             <a href="/devblog/" class={`nav-link text-sm font-medium transition-colors ${isActive('/devblog') ? 'active' : ''}`}>
-              devblog
+              {t('nav.devblog')}
             </a>
           </li>
           <li>
             <a href="/contact/" class={`nav-link text-sm font-medium transition-colors ${isActive('/contact') ? 'active' : ''}`}>
-              contact
+              {t('nav.contact')}
             </a>
           </li>
         </ul>
       </nav>
 
-      <div class="theme-control">
-        <slot />
+      <div class="flex items-center gap-3">
+        <div class="theme-control">
+          <slot />
+        </div>
+        <LanguageSwitcher />
       </div>
     </div>
 
     <div class="md:hidden flex items-center gap-4">
-      <div class="theme-control-mobile">
-        <slot />
+      <div class="flex items-center gap-3">
+        <div class="theme-control-mobile">
+          <slot />
+        </div>
+        <LanguageSwitcher />
       </div>
       <button id="menuButton" class="flex flex-col space-y-1.5 p-2" aria-label="Menu">
         <span class="w-6 h-0.5 bg-current block transition-transform duration-300"></span>
@@ -71,27 +83,27 @@ const isActive = (path: string) => pathname === path || pathname.startsWith(path
       <ul class="flex flex-col space-y-8 items-center text-center">
         <li>
           <a href="/" class="text-2xl font-medium transition-colors">
-            home
+            {t('nav.home')}
           </a>
         </li>
         <li>
           <a href="/about/" class="text-2xl font-medium transition-colors">
-            about
+            {t('nav.about')}
           </a>
         </li>
         <li>
           <a href="/projects/" class="text-2xl font-medium transition-colors">
-            projects
+            {t('nav.projects')}
           </a>
         </li>
         <li>
           <a href="/devblog/" class="text-2xl font-medium transition-colors">
-            devblog
+            {t('nav.devblog')}
           </a>
         </li>
         <li>
           <a href="/contact/" class="text-2xl font-medium transition-colors">
-            contact
+            {t('nav.contact')}
           </a>
         </li>
       </ul>

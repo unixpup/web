@@ -1,0 +1,120 @@
+{
+  "site": {
+    "title": "vermillionpaws | 開発者",
+    "description": "コードで素敵なものを作ることが大好きな開発者の個人サイト"
+  },
+  "nav": {
+    "home": "ホーム",
+    "about": "プロフィール",
+    "projects": "プロジェクト",
+    "devblog": "開発ブログ",
+    "contact": "お問い合わせ"
+  },
+  "home": {
+    "welcome": "いらっしゃいませ!",
+    "intro": "こんにちは！私のインターネットの小さな隅っこへようこそ。私はコードで素敵なものを作るのが大好きな開発者です。",
+    "moreAboutMe": "もっと詳しく",
+    "viewProjects": "プロジェクトを見る",
+    "skills": "技術スキル",
+    "webDev": "ウェブ開発",
+    "webDevDesc": "Astro, React, TailwindCSS, TypeScript",
+    "neovim": "Neovim",
+    "neovimDesc": "エディタのカスタマイズに夢中です",
+    "luaScripting": "Luaスクリプティング",
+    "luaScriptingDesc": "主にNeovimの設定用です、笑",
+    "uiuxDesign": "UI/UXデザイン",
+    "uiuxDesignDesc": "見た目の良いものが好きです",
+    "workflowOptimization": "ワークフロー最適化",
+    "workflowOptimizationDesc": "これに時間をかけすぎています",
+    "webgl": "WebGL",
+    "webglDesc": "まだ学習中ですが、光るエフェクトが大好きです",
+    "ctaTitle": "話したいですか？",
+    "ctaDescription": "大きなコラボレーションを探しているわけではありませんが、コード、ゲーム、または何でも話し合うのはいつでも歓迎です！",
+    "sayHello": "挨拶する"
+  },
+  "about": {
+    "title": "プロフィール",
+    "intro": {
+      "hey": "こんにちは！",
+      "part1": "見た目が良くて機能もうまく動くものが好きだからプログラミングを始めました。コードエディタの見た目を調整するのに多くの時間を費やし、単に機能するだけでなく、使い心地の良いウェブサイトを作ることにかなり執着しています。",
+      "part2": "主にモダンなウェブ技術 - Astro、React、TypeScriptなどを使って作業しています。プロジェクトはシンプルでクリーンに保つように心がけていますが、特別な感じを与える小さなアニメーションやディテールを加えることには抵抗できません。",
+      "part3": "コーディングをしていないときは、ビデオゲームをしたり、何かを一気見したり、Linuxセットアップを延々とカスタマイズしたりしています。Discordにも多くの時間を費やしています。"
+    },
+    "timeline": {
+      "title": "これまでの活動",
+      "webDevelopment": {
+        "title": "ウェブ開発",
+        "period": "2020年 - 現在",
+        "description": "モダンなウェブフレームワークや技術を使用して、レスポンシブで、アクセシブルで、パフォーマンスの高いウェブサイトやアプリケーションを構築しています。"
+      },
+      "systemAdmin": {
+        "title": "システム管理とセキュリティ",
+        "period": "経験",
+        "description": "LinuxやBSD環境を含む様々なシステムでシステム管理タスクを管理し、セキュリティプラクティスを実装しています。"
+      },
+      "linuxJourney": {
+        "title": "Linux体験",
+        "period": "2014年 - 現在",
+        "description": "様々なLinuxディストリビューションを探索し、環境をカスタマイズしています。Neovim、Vim、Emacs、VSCode、Kakoune、Visなど複数のエディタの経験があります。"
+      }
+    },
+    "skills": {
+      "title": "スキルと知識",
+      "languages": {
+        "title": "プログラミング言語",
+        "jsTs": "JavaScript/TypeScript",
+        "htmlCss": "HTML/CSS",
+        "lua": "Lua",
+        "c": "C"
+      },
+      "frameworks": {
+        "title": "フレームワークとツール",
+        "astro": "Astro",
+        "react": "React",
+        "textEditors": "テキストエディタ",
+        "linuxBsd": "Linux/BSD"
+      }
+    },
+    "sayHello": "挨拶してください！"
+  },
+  "projects": {
+    "title": "プロジェクト",
+    "filters": {
+      "all": "すべて",
+      "astro": "Astro",
+      "lua": "Lua",
+      "featured": "注目"
+    }
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "findMeOnline": "オンラインで見つける",
+    "email": {
+      "title": "メール",
+      "value": "dev@fault.wtf"
+    },
+    "discord": {
+      "title": "Discord",
+      "value": "@vermillionpaws"
+    },
+    "website": {
+      "title": "ウェブサイト",
+      "value": "fault.wtf"
+    },
+    "github": {
+      "title": "GitHub",
+      "value": "@vermillionpaws"
+    },
+    "status": {
+      "title": "ただ過ごしています",
+      "description": "現在は主に個人プロジェクトに集中していますが、コードについて話し合ったりアイデアを交換したりするのはいつでも歓迎です！"
+    }
+  },
+  "devblog": {
+    "title": "開発ブログ",
+    "empty": {
+      "title": "まだ投稿はありません！",
+      "description": "最初のブログ投稿を作成中です。私のプロジェクトや技術的冒険に関する最新情報をチェックするために、また来てください！"
+    }
+  }
+}

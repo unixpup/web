@@ -1,0 +1,120 @@
+{
+  "site": {
+    "title": "vermillionpaws | desenvolvedor",
+    "description": "O site pessoal de um desenvolvedor que adora criar coisas legais com código"
+  },
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "projects": "Projetos",
+    "devblog": "DevBlog",
+    "contact": "Contato"
+  },
+  "home": {
+    "welcome": "Bem-vindo!",
+    "intro": "Ei! Bem-vindo ao meu pequeno canto da internet. Sou um desenvolvedor que adora criar coisas legais com código.",
+    "moreAboutMe": "Mais sobre mim",
+    "viewProjects": "Ver projetos",
+    "skills": "Habilidades técnicas",
+    "webDev": "Desenvolvimento Web",
+    "webDevDesc": "Astro, React, TailwindCSS, TypeScript",
+    "neovim": "Neovim",
+    "neovimDesc": "Sou obcecado em personalizar meu editor",
+    "luaScripting": "Scripting em Lua",
+    "luaScriptingDesc": "Principalmente para minha configuração do Neovim, rs",
+    "uiuxDesign": "Design de UI/UX",
+    "uiuxDesignDesc": "Gosto de fazer as coisas ficarem bonitas",
+    "workflowOptimization": "Otimização de Fluxo de Trabalho",
+    "workflowOptimizationDesc": "Passo tempo demais nisso",
+    "webgl": "WebGL",
+    "webglDesc": "Ainda estou aprendendo, mas adoro os efeitos brilhantes",
+    "ctaTitle": "Quer conversar?",
+    "ctaDescription": "Não estou realmente procurando grandes colaborações, mas estou sempre disposto a conversar sobre código, jogos ou qualquer coisa!",
+    "sayHello": "Diga olá"
+  },
+  "about": {
+    "title": "Sobre",
+    "intro": {
+      "hey": "Ei!",
+      "part1": "Entrei na programação porque adoro quando as coisas parecem boas E funcionam bem. Passo muito tempo ajustando a aparência do meu editor de código, e sou bastante obcecado em criar sites que não apenas funcionem, mas também sejam agradáveis de usar.",
+      "part2": "Trabalho principalmente com coisas modernas da web - Astro, React, TypeScript, esse tipo de coisa. Tento manter meus projetos simples e limpos, mas não resisto a adicionar pequenas animações e detalhes que fazem as coisas parecerem especiais.",
+      "part3": "Quando não estou programando, provavelmente estou jogando videogames, fazendo maratona de séries ou personalizando infinitamente minha configuração Linux. Também passo muito tempo no Discord."
+    },
+    "timeline": {
+      "title": "No que tenho trabalhado",
+      "webDevelopment": {
+        "title": "Desenvolvimento Web",
+        "period": "2020 - Presente",
+        "description": "Trabalhando com frameworks e tecnologias web modernas para construir sites e aplicações responsivos, acessíveis e de alto desempenho."
+      },
+      "systemAdmin": {
+        "title": "Administração de Sistemas & Segurança",
+        "period": "Experiência",
+        "description": "Gerenciando tarefas de administração de sistemas e implementando práticas de segurança em vários sistemas, incluindo ambientes Linux e BSD."
+      },
+      "linuxJourney": {
+        "title": "Jornada Linux",
+        "period": "2014 - Presente",
+        "description": "Explorando várias distribuições Linux e personalizando ambientes. Experiência com múltiplos editores, incluindo Neovim, Vim, Emacs, VSCode, Kakoune e Vis."
+      }
+    },
+    "skills": {
+      "title": "Habilidades & Conhecimentos",
+      "languages": {
+        "title": "Linguagens",
+        "jsTs": "JavaScript/TypeScript",
+        "htmlCss": "HTML/CSS",
+        "lua": "Lua",
+        "c": "C"
+      },
+      "frameworks": {
+        "title": "Frameworks & Ferramentas",
+        "astro": "Astro",
+        "react": "React",
+        "textEditors": "Editores de Texto",
+        "linuxBsd": "Linux/BSD"
+      }
+    },
+    "sayHello": "Diga olá!"
+  },
+  "projects": {
+    "title": "Projetos",
+    "filters": {
+      "all": "Todos",
+      "astro": "Astro",
+      "lua": "Lua",
+      "featured": "Destacados"
+    }
+  },
+  "contact": {
+    "title": "Contato",
+    "findMeOnline": "Encontre-me online",
+    "email": {
+      "title": "Email",
+      "value": "dev@fault.wtf"
+    },
+    "discord": {
+      "title": "Discord",
+      "value": "@vermillionpaws"
+    },
+    "website": {
+      "title": "Website",
+      "value": "fault.wtf"
+    },
+    "github": {
+      "title": "GitHub",
+      "value": "@vermillionpaws"
+    },
+    "status": {
+      "title": "Só curtindo",
+      "description": "No momento estou principalmente focado em projetos pessoais, mas estou sempre disposto a conversar sobre código ou trocar ideias!"
+    }
+  },
+  "devblog": {
+    "title": "DevBlog",
+    "empty": {
+      "title": "Ainda sem postagens!",
+      "description": "Ainda estou trabalhando na minha primeira postagem do blog. Volte em breve para atualizações sobre meus projetos e aventuras tecnológicas!"
+    }
+  }
+}

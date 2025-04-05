@@ -1,0 +1,120 @@
+{
+  "site": {
+    "title": "vermillionpaws | developer",
+    "description": "Personal website of a developer who loves creating cool stuff with code"
+  },
+  "nav": {
+    "home": "home",
+    "about": "about",
+    "projects": "projects",
+    "devblog": "devblog",
+    "contact": "contact"
+  },
+  "home": {
+    "welcome": "Welcome!",
+    "intro": "Hey! Welcome to my little corner of the internet. I'm a developer who loves creating cool stuff with code.",
+    "moreAboutMe": "More about me",
+    "viewProjects": "View projects",
+    "skills": "Technical skills",
+    "webDev": "Web Development",
+    "webDevDesc": "Astro, React, TailwindCSS, TypeScript",
+    "neovim": "Neovim",
+    "neovimDesc": "I'm obsessed with customizing my editor",
+    "luaScripting": "Lua Scripting",
+    "luaScriptingDesc": "Mostly for my Neovim config, lol",
+    "uiuxDesign": "UI/UX Design",
+    "uiuxDesignDesc": "I like making things look pretty",
+    "workflowOptimization": "Workflow Optimization",
+    "workflowOptimizationDesc": "I spend way too much time on this",
+    "webgl": "WebGL",
+    "webglDesc": "Still learning, but I love the shiny stuff",
+    "ctaTitle": "Want to chat?",
+    "ctaDescription": "I'm not really looking for big collaborations, but I'm always down to chat about code, games, or whatever!",
+    "sayHello": "Say hello"
+  },
+  "about": {
+    "title": "About",
+    "intro": {
+      "hey": "Hey!",
+      "part1": "I got into programming because I love when things look good AND work well. I spend way too much time tweaking how my code editor looks, and I'm pretty obsessed with making websites that don't just function, but actually feel nice to use.",
+      "part2": "I mostly work with modern web stuff - Astro, React, TypeScript, that kind of thing. I try to keep my projects simple and clean, but I can't resist adding little animations and details that make things feel special.",
+      "part3": "When I'm not coding, I'm probably playing video games, binge-watching something, or endlessly customizing my Linux setup. I also spend way too much time on Discord."
+    },
+    "timeline": {
+      "title": "What I've Been Up To",
+      "webDevelopment": {
+        "title": "Web Development",
+        "period": "2020 - Present",
+        "description": "Working with modern web frameworks and technologies to build responsive, accessible, and performant websites and applications."
+      },
+      "systemAdmin": {
+        "title": "System Administration & Security",
+        "period": "Experience",
+        "description": "Managing system administration tasks and implementing security practices across various systems including Linux and BSD environments."
+      },
+      "linuxJourney": {
+        "title": "Linux Journey",
+        "period": "2014 - Present",
+        "description": "Exploring various Linux distributions and customizing environments. Experienced with multiple editors including Neovim, Vim, Emacs, VSCode, Kakoune, and Vis."
+      }
+    },
+    "skills": {
+      "title": "Skills & Stuff I Know",
+      "languages": {
+        "title": "Languages",
+        "jsTs": "JavaScript/TypeScript",
+        "htmlCss": "HTML/CSS",
+        "lua": "Lua",
+        "c": "C"
+      },
+      "frameworks": {
+        "title": "Frameworks & Tools",
+        "astro": "Astro",
+        "react": "React",
+        "textEditors": "Text Editors",
+        "linuxBsd": "Linux/BSD"
+      }
+    },
+    "sayHello": "Say hello!"
+  },
+  "projects": {
+    "title": "Projects",
+    "filters": {
+      "all": "All",
+      "astro": "Astro",
+      "lua": "Lua",
+      "featured": "Featured"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "findMeOnline": "Find Me Online",
+    "email": {
+      "title": "Email",
+      "value": "dev@fault.wtf"
+    },
+    "discord": {
+      "title": "Discord",
+      "value": "@vermillionpaws"
+    },
+    "website": {
+      "title": "Website",
+      "value": "fault.wtf"
+    },
+    "github": {
+      "title": "GitHub",
+      "value": "@vermillionpaws"
+    },
+    "status": {
+      "title": "Just Vibing",
+      "description": "I'm mostly focused on personal projects right now, but I'm always down to chat about code or swap ideas!"
+    }
+  },
+  "devblog": {
+    "title": "DevBlog",
+    "empty": {
+      "title": "No posts yet!",
+      "description": "I'm still working on my first blog post. Check back soon for updates about my projects and tech adventures!"
+    }
+  }
+}
