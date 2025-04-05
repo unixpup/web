@@ -1,11 +1,14 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Main from '../components/Main.astro';
-import Analytics from '@vercel/analytics/astro'
-import  SpeedInsights  from "@vercel/speed-insights/astro"
+import Layout from '@layouts/Layout.astro';
+import Main from '@components/Main.astro';
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from "@vercel/speed-insights/astro";
+
+// Define page metadata with types
+const pageTitle: string = "vermillionpaws | developer";
 ---
 
-<Layout title="vermillionpaws | developer">
+<Layout title={pageTitle}>
 	<Main />
 	<Analytics />
 	<SpeedInsights/>

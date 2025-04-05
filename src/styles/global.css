@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* Tokyo Night color scheme */
+
+@layer base {
+  :root {
+    --background: theme('colors.tokyo.bg');
+    --foreground: theme('colors.tokyo.fg');
+
+    --card: theme('colors.tokyo.bg-highlight');
+    --card-foreground: theme('colors.tokyo.fg');
+
+    --popover: theme('colors.tokyo.bg');
+    --popover-foreground: theme('colors.tokyo.fg');
+
+    --primary: theme('colors.tokyo.blue');
+    --primary-foreground: theme('colors.tokyo.bg');
+
+    --secondary: theme('colors.tokyo.purple');
+    --secondary-foreground: theme('colors.tokyo.fg');
+
+    --muted: theme('colors.tokyo.terminal-black');
+    --muted-foreground: theme('colors.tokyo.fg-dark');
+
+    --accent: theme('colors.tokyo.cyan');
+    --accent-foreground: theme('colors.tokyo.bg');
+
+    --destructive: theme('colors.tokyo.red');
+    --destructive-foreground: theme('colors.tokyo.fg');
+
+    --border: theme('colors.tokyo.terminal-black');
+    --input: theme('colors.tokyo.terminal-black');
+    --ring: theme('colors.tokyo.purple');
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-tokyo-bg text-tokyo-fg;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-tokyo-blue;
+  }
+
+  a {
+    @apply text-tokyo-cyan hover:text-tokyo-blue transition-colors;
+  }
+
+  code {
+    @apply bg-tokyo-bg-highlight text-tokyo-green px-1.5 py-0.5 rounded;
+  }
+
+  ::selection {
+    @apply bg-tokyo-purple text-tokyo-bg;
+  }
+}
