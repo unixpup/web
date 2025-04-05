@@ -381,3 +381,61 @@ section {
     color: #666;
   }
 }
+
+/* Welcome text animation styles */
+#welcome-text-container {
+  position: relative;
+  min-height: 1.2em;
+  margin-bottom: 0.2em;
+}
+
+.welcome-text {
+  display: inline-block;
+  width: 100%;
+  transform-origin: center;
+}
+
+.welcome-text.opacity-0 {
+  opacity: 0;
+}
+
+.welcome-text.opacity-100 {
+  opacity: 1;
+}
+
+.welcome-text.translate-y-0 {
+  transform: translateY(0);
+}
+
+.welcome-text.translate-y-4 {
+  transform: translateY(1rem);
+}
+
+.welcome-text.-translate-y-4 {
+  transform: translateY(-1rem);
+}
+
+#language-indicator {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  transition: opacity 0.3s ease-in-out;
+  position: relative;
+}
+
+/* Different theme support for the language indicator */
+.theme-light #language-indicator {
+  color: var(--theme-fg-dark);
+}
+
+/* Responsive adjustments for the welcome text */
+@media (max-width: 768px) {
+  #welcome-text-container {
+    min-height: 1.5em;
+  }
+
+  #language-indicator {
+    font-size: 0.75rem;
+  }
+}

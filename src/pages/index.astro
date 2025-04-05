@@ -6,6 +6,18 @@ import SpeedInsights from "@vercel/speed-insights/astro";
 
 // Define page metadata with types
 const pageTitle: string = "vermillionpaws | developer";
+
+// Define welcome messages in different languages with emojis
+const welcomeMessages = [
+  { text: "Welcome!", lang: "English", emoji: "🇬🇧" },
+  { text: "¡Bienvenido!", lang: "Spanish", emoji: "🇪🇸" },
+  { text: "いらっしゃいませ!", lang: "Japanese", emoji: "🇯🇵" },
+  { text: "Willkommen!", lang: "German", emoji: "🇩🇪" },
+  { text: "Bienvenue!", lang: "French", emoji: "🇫🇷" },
+  { text: "欢迎!", lang: "Chinese", emoji: "🇨🇳" },
+  { text: "Bem-vindo!", lang: "Portuguese", emoji: "🇵🇹" },
+  { text: "환영합니다!", lang: "Korean", emoji: "🇰🇷" },
+];
 ---
 
 <Layout title={pageTitle}>
@@ -14,11 +26,16 @@ const pageTitle: string = "vermillionpaws | developer";
     <section class="flex flex-col items-center justify-center pt-32 pb-24 px-4">
       <div class="animate-fade-in container max-w-4xl mx-auto text-center">
         <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white tracking-tighter perspective-text">
-          <span>Build</span> <span class="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">beautiful</span> <span>experiences</span>
+          <!-- Single welcome message container with controlled visibility -->
+          <div id="welcome-text-container" class="relative h-[1.2em]">
+            <span id="welcome-text" class="absolute top-0 left-0 right-0 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">Welcome!</span>
+          </div>
+          <div class="text-sm md:text-base text-neutral-500 mt-2 font-normal">
+            <span id="language-indicator">English 🇬🇧</span>
+          </div>
         </h1>
         <p class="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto mb-10">
-          Hey! I'm a 19-year-old trans girl who loves coding and making cool stuff for the web.
-          I'm all about creating things that are both functional and look nice.
+          Hey! Welcome to my little corner of the internet. I'm a developer who loves creating cool stuff with code.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="/about/" class="btn bg-white/5 hover:bg-white/10 border border-white/10 rounded-md px-6 py-3 text-sm font-medium transition-all">
@@ -52,7 +69,7 @@ const pageTitle: string = "vermillionpaws | developer";
           <div class="card p-6 bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-lg transition-all hover:bg-white/[0.05]">
             <div class="flex items-center mb-4">
               <div class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3m18-3v3a2 2 0 0 0 2 2h3M3 16v3a2 2 0 0 0 2 2h3m8-2h3a2 2 0 0 0 2-2v-3"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3m18-3v3a2 2 0 0 0-2 2h3M3 16v3a2 2 0 0 0 2 2h3m8-2h3a2 2 0 0 0 2-2v-3"></path></svg>
               </div>
             </div>
             <h3 class="text-lg font-medium text-white mb-2">Neovim</h3>
@@ -122,3 +139,96 @@ const pageTitle: string = "vermillionpaws | developer";
   <Analytics />
   <SpeedInsights/>
 </Layout>
+
+<style>
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-out {
+    animation: fadeOut 0.5s ease-in-out forwards;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    // Get welcome messages from the server-side array
+    const welcomeMessages = [
+      { text: "Welcome!", lang: "English", emoji: "🇬🇧" },
+      { text: "¡Bienvenido!", lang: "Spanish", emoji: "🇪🇸" },
+      { text: "いらっしゃいませ!", lang: "Japanese", emoji: "🇯🇵" },
+      { text: "Willkommen!", lang: "German", emoji: "🇩🇪" },
+      { text: "Bienvenue!", lang: "French", emoji: "🇫🇷" },
+      { text: "欢迎!", lang: "Chinese", emoji: "🇨🇳" },
+      { text: "Bem-vindo!", lang: "Portuguese", emoji: "🇵🇹" },
+      { text: "환영합니다!", lang: "Korean", emoji: "🇰🇷" },
+    ];
+
+    const welcomeText = document.getElementById('welcome-text');
+    const languageIndicator = document.getElementById('language-indicator');
+    let currentIndex = 0;
+    let isAnimating = false;
+
+    // Set interval to change the welcome message every 3 seconds
+    setInterval(() => {
+      if (isAnimating) return;
+      changeWelcomeMessage();
+    }, 3000);
+
+    // Function to change welcome message with proper animation
+    function changeWelcomeMessage() {
+      isAnimating = true;
+
+      // Start fade-out animation
+      welcomeText.classList.add('fade-out');
+      languageIndicator.style.opacity = '0';
+      languageIndicator.style.transition = 'opacity 0.5s ease-in-out';
+
+      // Wait for fade-out to complete
+      setTimeout(() => {
+        // Update index for the next message
+        currentIndex = (currentIndex + 1) % welcomeMessages.length;
+
+        // Update the text content
+        const messageObj = welcomeMessages[currentIndex];
+        welcomeText.textContent = messageObj.text;
+        languageIndicator.textContent = `${messageObj.lang} ${messageObj.emoji}`;
+
+        // Remove fade-out and add fade-in
+        welcomeText.classList.remove('fade-out');
+        welcomeText.classList.add('fade-in');
+
+        // Fade in the language indicator
+        languageIndicator.style.opacity = '1';
+
+        // Clear the fade-in class after animation completes
+        setTimeout(() => {
+          welcomeText.classList.remove('fade-in');
+          isAnimating = false;
+        }, 500);
+      }, 500);
+    }
+  });
+</script>
