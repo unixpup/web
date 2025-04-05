@@ -5,6 +5,12 @@ import vercel from '@astrojs/vercel';
 
 import react from '@astrojs/react';
 
+import mdx from '@astrojs/mdx';
+
+import partytown from '@astrojs/partytown';
+
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://fault.wtf/',
@@ -41,5 +47,5 @@ export default defineConfig({
     headingIdCompat: true,
   },
 
-  integrations: [react()],
+  integrations: [react(), mdx(), partytown(), sitemap()],
 });
