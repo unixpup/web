@@ -1,0 +1,212 @@
+---
+layout: ../../layouts/BlogLayout.astro
+title: "Hello World: Introducing My Dev Blog"
+publishDate: "2025-04-05"
+description: "My first blog post with MDX support and Tokyo Night syntax highlighting"
+tags: ["intro", "web-dev", "mdx"]
+author: "vermillionpaws"
+---
+
+# Welcome to My Dev Blog!
+
+I'm excited to launch this new space where I'll share my thoughts, experiences, and tutorials on web development, programming, and tech.
+
+## MDX Support with Tokyo Night Syntax Highlighting
+
+One of the key features of this blog is **MDX support** with beautiful **Tokyo Night syntax highlighting**. This allows me to write content that includes React components and JSX right alongside my Markdown content.
+
+### Let's see some code examples!
+
+Here's a JavaScript example with the Tokyo Night syntax highlighting:
+
+```javascript
+// Here's a simple function
+function greet(name) {
+  return `Hello, ${name}! Welcome to my dev blog.`;
+}
+
+// Let's use this function
+const message = greet('reader');
+console.log(message);
+
+// We can also use arrow functions
+const multiply = (a, b) => a * b;
+console.log(`5 * 3 = ${multiply(5, 3)}`);
+
+// Or classes
+class BlogPost {
+  constructor(title, content, date) {
+    this.title = title;
+    this.content = content;
+    this.date = date;
+    this.likes = 0;
+  }
+
+  like() {
+    this.likes++;
+    return this.likes;
+  }
+}
+```
+
+And here's some TypeScript:
+
+```typescript
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  publishDate: Date;
+  tags: string[];
+}
+
+type PostStatus = 'draft' | 'published' | 'archived';
+
+class BlogManager {
+  private posts: Map<string, Post & { status: PostStatus }> = new Map();
+
+  addPost(post: Post, status: PostStatus = 'draft'): void {
+    this.posts.set(post.id, { ...post, status });
+  }
+
+  publishPost(id: string): boolean {
+    const post = this.posts.get(id);
+    if (!post) return false;
+
+    this.posts.set(id, { ...post, status: 'published' });
+    return true;
+  }
+
+  getPublishedPosts(): Post[] {
+    return Array.from(this.posts.values())
+      .filter(post => post.status === 'published');
+  }
+}
+```
+
+How about some HTML and CSS?
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Amazing Blog</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <h1>Hello, World!</h1>
+      <p>This is my first blog post.</p>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 My Dev Blog</p>
+  </footer>
+</body>
+</html>
+```
+
+```css
+:root {
+  --primary-color: #7aa2f7;
+  --secondary-color: #bb9af7;
+  --text-color: #a9b1d6;
+  --background-color: #1a1b26;
+  --accent-color: #f7768e;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem 0;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+article {
+  max-width: 65ch;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+h1 {
+  color: var(--accent-color);
+}
+```
+
+## Working with MDX
+
+MDX allows us to do some pretty cool things beyond just standard markdown. For example, we can:
+
+- Import and use React components
+- Export variables
+- Use JSX expressions
+
+Here's a simple example of a React component:
+
+```jsx
+import React, { useState } from 'react';
+
+export const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div className="counter">
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <button onClick={() => setCount(count - 1)}>Decrement</button>
+    </div>
+  );
+};
+```
+
+## What's Next?
+
+In future posts, I'll be covering topics like:
+
+1. Modern web development techniques
+2. JavaScript frameworks and libraries
+3. Performance optimization
+4. UI/UX design principles
+5. Backend development
+6. DevOps and deployment
+
+I'm looking forward to sharing my knowledge and learning from the community. Stay tuned for more content coming soon!
+
+> "The beautiful thing about learning is that nobody can take it away from you." — B.B. King
+
+Thanks for reading my first post! Feel free to drop me a comment or connect with me on social media.

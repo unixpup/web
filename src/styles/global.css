@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 /* Tokyo Night color scheme with theme variable support */
 :root {
@@ -24,6 +25,9 @@
   --theme-yellow: #e0af68;
 
   --cursor-size: 24px;
+
+  /* Font family variables */
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 /* Provide light theme defaults based on system preference when JavaScript is disabled */
@@ -269,6 +273,13 @@ section {
   animation-duration: 0.3s;
 }
 
+/* Monospace font styling */
+code, pre, kbd, samp, tt {
+  font-family: var(--font-mono);
+  font-size: 1.05em; /* Slightly larger than default */
+  font-feature-settings: "liga" 0, "calt" 1; /* Enable standard ligatures */
+}
+
 /* Code styles that adapt to theme */
 @layer base {
   code {
@@ -276,7 +287,25 @@ section {
     color: var(--theme-green);
     padding: 0.1em 0.3em;
     border-radius: 0.25em;
-    font-size: 0.9em;
+    font-size: 1.05em;
+    font-family: var(--font-mono);
+  }
+
+  /* Code blocks */
+  pre {
+    font-family: var(--font-mono);
+    line-height: 1.6;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    background: var(--theme-bg-highlight);
+  }
+
+  pre code {
+    background: transparent;
+    padding: 0;
+    font-size: 1.05em;
+    color: inherit;
   }
 
   /* Improved tag contrast for the light theme */

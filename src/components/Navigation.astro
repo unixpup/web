@@ -14,7 +14,7 @@ const isActive = (path: string) => pathname === path || pathname.startsWith(path
       <nav>
         <ul class="flex items-center space-x-8">
           <li>
-            <a href="/" class={`nav-link text-sm font-medium transition-colors ${isActive('/') && !isActive('/about') && !isActive('/projects') && !isActive('/contact') ? 'active' : ''}`}>
+            <a href="/" class={`nav-link text-sm font-medium transition-colors ${isActive('/') && !isActive('/about') && !isActive('/projects') && !isActive('/contact') && !isActive('/devblog') ? 'active' : ''}`}>
               home
             </a>
           </li>
@@ -26,6 +26,11 @@ const isActive = (path: string) => pathname === path || pathname.startsWith(path
           <li>
             <a href="/projects/" class={`nav-link text-sm font-medium transition-colors ${isActive('/projects') ? 'active' : ''}`}>
               projects
+            </a>
+          </li>
+          <li>
+            <a href="/devblog/" class={`nav-link text-sm font-medium transition-colors ${isActive('/devblog') ? 'active' : ''}`}>
+              devblog
             </a>
           </li>
           <li>
@@ -77,6 +82,11 @@ const isActive = (path: string) => pathname === path || pathname.startsWith(path
         <li>
           <a href="/projects/" class="text-2xl font-medium transition-colors">
             projects
+          </a>
+        </li>
+        <li>
+          <a href="/devblog/" class="text-2xl font-medium transition-colors">
+            devblog
           </a>
         </li>
         <li>

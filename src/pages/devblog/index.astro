@@ -1,0 +1,110 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Footer from '@components/Footer.astro';
+import { slide } from 'astro:transitions';
+import { calculateReadingTime } from '../../utils/readingTime';
+
+// Define page metadata
+const pageTitle: string = "Devblog | vermillionpaws";
+const pageDescription: string = "Development blog with coding insights, tutorials, and tech discussions";
+
+// Get all MDX files in the 'devblog' directory
+const allPosts = await Astro.glob('./**/*.mdx');
+
+// Process posts - add reading time and sort by date
+const processedPosts = allPosts.map(post => {
+  // Calculate reading time if not already specified in frontmatter
+  if (!post.frontmatter.readingTime) {
+    // Skip reading time calculation for posts without content
+    // We'll set default reading time instead
+    post.frontmatter.readingTime = "2 min read";
+  }
+  return post;
+});
+
+// Sort posts by date (most recent first)
+const sortedPosts = processedPosts.sort((a, b) => {
+  return new Date(b.frontmatter.publishDate).getTime() - new Date(a.frontmatter.publishDate).getTime();
+});
+
+// Format the date in a nice way
+function formatDate(date: string | number | Date) {
+  return new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main class="min-h-screen pt-24 pb-20">
+    <div class="container max-w-4xl mx-auto px-4 md:px-6">
+      <div transition:animate={slide({ duration: '0.5s' })}>
+        <div class="mb-12">
+          <h1 class="text-3xl md:text-4xl font-bold text-white mb-6 flex items-center">
+            <span class="text-neutral-500">~/</span>devblog
+          </h1>
+
+          <p class="text-neutral-400 max-w-2xl mb-6">
+            My thoughts on coding, development, and tech. Featuring tutorials, deep dives,
+            and random musings from keyboard to screen.
+          </p>
+
+          <div class="h-1 w-24 bg-gradient-to-r from-tokyo-blue to-tokyo-purple"></div>
+        </div>
+
+        <div>
+          {sortedPosts.length > 0 ? (
+            <ul class="grid grid-cols-1 gap-8">
+              {sortedPosts.map(post => (
+                <li class="bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-lg overflow-hidden hover:transform hover:scale-[1.01] transition-all duration-200">
+                  <a href={post.url} class="block p-6">
+                    <div class="flex flex-col">
+                      <span class="text-sm text-tokyo-cyan mb-2">
+                        {formatDate(post.frontmatter.publishDate)}
+                        {post.frontmatter.readingTime && ` · ${post.frontmatter.readingTime}`}
+                      </span>
+
+                      <h2 class="text-xl md:text-2xl font-bold text-white mb-3">
+                        {post.frontmatter.title}
+                      </h2>
+
+                      {post.frontmatter.description && (
+                        <p class="text-neutral-400 mb-4">
+                          {post.frontmatter.description}
+                        </p>
+                      )}
+
+                      {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                          {post.frontmatter.tags.map((tag: unknown) => (
+                            <span class="bg-tokyo-bg-highlight text-tokyo-blue px-2 py-1 rounded-full text-xs font-medium">
+                              #{tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div class="bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-lg p-8 text-center">
+              <svg class="w-16 h-16 mx-auto mb-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+              </svg>
+              <h3 class="text-xl font-semibold mb-2 text-white">No blog posts yet!</h3>
+              <p class="text-neutral-400">
+                Blog posts will appear here once they're published. Check back soon!
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
